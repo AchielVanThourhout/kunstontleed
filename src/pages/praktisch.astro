@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <section class="practical-hero">
+    <p class="practical-kicker">Alles op een rij</p>
+    <h1>Praktische info</h1>
+    <p class="practical-intro">
+      Hier vind je alle praktische informatie voor je bezoek aan Kunst on(t)leed.
+      Deze informatie kan later nog verder aangevuld of aangepast worden.
+    </p>
+  </section>
+
+  <section class="practical-grid">
+    <article class="info-card">
+      <h2>Wanneer</h2>
+      <p>
+        Datum en openingsuren van het evenement komen hier. Je kunt later ook
+        meerdere dagen of tijdsblokken toevoegen.
+      </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Locatie</h2>
+      <p>
+        Hier komt het startpunt of het centrale adres van Kunst on(t)leed in
+        Gits, samen met extra locatie-info.
+      </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Bereikbaarheid</h2>
+      <p>
+        Voeg hier info toe over parkeren, fietsenstalling, openbaar vervoer of
+        wandelroute naar het parcours.
+      </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Toegankelijkheid</h2>
+      <p>
+        Hier kun je later vermelden of het parcours rolstoeltoegankelijk is,
+        waar er oneffen stukken zijn en of er hulp voorzien is.
+      </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Tickets of deelname</h2>
+      <p>
+        Hier kun je zetten of het evenement gratis is, vrij toegankelijk is, of
+        dat bezoekers zich ergens moeten aanmelden.
+      </p>
+    </article>
+
+    <article class="info-card">
+      <h2>Contact</h2>
+      <p>
+        Voeg hier later een e-mailadres, telefoonnummer of organisatorische
+        contactgegevens toe voor vragen van bezoekers.
+      </p>
+    </article>
+  </section>
+</Layout>
+
+<style>
+  .practical-hero {
+    padding: 2rem 0 1rem;
+    max-width: 760px;
+  }
+
+  .practical-kicker {
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .practical-hero h1 {
+    margin: 0;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 0.95;
+  }
+
+  .practical-intro {
+    margin-top: 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .practical-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .info-card {
+    background-color: rgba(251, 243, 230, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
+  }
+
+  .info-card h2 {
+    margin: 0 0 0.9rem 0;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .info-card p {
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 700px) {
+    .practical-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-card h2 {
+      font-size: 1.7rem;
+    }
+  }
+</style>

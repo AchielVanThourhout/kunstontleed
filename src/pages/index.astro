@@ -1,11 +1,192 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <section class="poster-hero">
+    <div class="texture"></div>
+
+    <svg class="hero-art" viewBox="0 0 1200 760" aria-hidden="true">
+  <!-- grote gele lijnen -->
+  <path d="M-30 45 C 170 35, 175 240, 195 500 C 210 690, 405 735, 565 625 C 710 525, 835 550, 940 735"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M10 65 C 195 55, 200 250, 215 500 C 230 675, 415 710, 565 610 C 700 520, 825 540, 920 710"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M50 88 C 220 82, 225 260, 235 500 C 248 660, 425 690, 565 595 C 690 510, 810 530, 900 685"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M92 112 C 245 108, 248 272, 255 500 C 265 645, 435 670, 565 580 C 680 502, 795 520, 880 660"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M134 136 C 270 133, 272 282, 274 500 C 282 628, 445 650, 565 565 C 670 495, 780 510, 860 635"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+
+  <!-- kleinere gele lijnen rechts -->
+  <path d="M835 430 C 965 390, 1080 420, 1215 560"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M825 455 C 955 415, 1068 445, 1200 585"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M815 480 C 945 442, 1055 470, 1185 610"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+  <path d="M805 505 C 935 468, 1040 495, 1170 635"
+        fill="none" stroke="#eca30a" stroke-width="10" stroke-linecap="round" />
+
+  <!-- roze brush strokes -->
+  <path d="M170 58 C 215 120, 240 165, 258 226"
+        fill="none" stroke="#e9b7a7" stroke-width="18" stroke-linecap="round" />
+  <path d="M250 70 C 302 135, 330 188, 345 248"
+        fill="none" stroke="#e9b7a7" stroke-width="18" stroke-linecap="round" />
+
+  <!-- bruine blob -->
+  <path
+  d="M965 10 C 1070 8, 1180 35, 1160 155 C 1146 235, 1065 262, 998 235 C 925 198, 900 82, 965 10 Z"
+  fill="#bf6516"
+/>
+</svg>
+
+    <div class="hero-copy">
+      <p class="hero-kicker">Kunstwandeling in Gits</p>
+
+      <h1>
+        <span>Kunst</span>
+        <span>On(t)leed</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Een artistiek parcours waar bezoekers kunst, sfeer en ontmoeting samen
+        kunnen beleven.
+      </p>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h2>Welkom</h2>
+    <p>
+      Welkom op de website van Kunst on(t)leed. Hier vind je binnenkort alle info
+      over de kunstenaars, het parcours, de agenda en praktische afspraken.
+    </p>
+  </section>
+
+  <section class="home-section">
+    <h2>Ontdek het evenement</h2>
+    <p>
+      Kunst on(t)leed brengt kunst op een toegankelijke manier samen in een
+      bijzonder parcours. Bezoekers kunnen verschillende kunstenaars ontdekken en
+      onderweg genieten van de unieke sfeer van het evenement.
+    </p>
+  </section>
 </Layout>
+
+<style>
+  .poster-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 620px;
+  padding: 4rem 0 3rem;
+  isolation: isolate;
+}
+
+  .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 34% 18%, rgba(191, 160, 125, 0.18), transparent 18%),
+      radial-gradient(circle at 30% 36%, rgba(191, 160, 125, 0.12), transparent 26%),
+      radial-gradient(circle at 18% 58%, rgba(191, 160, 125, 0.1), transparent 18%);
+    opacity: 0.9;
+  }
+
+  .hero-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+  .hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  padding-top: 3.8rem;
+}
+
+  .hero-kicker {
+  margin: 0 0 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+  h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  font-size: clamp(3.8rem, 7.2vw, 5.9rem);
+  line-height: 0.92;
+  color: var(--title);
+}
+
+  .hero-subtitle {
+  max-width: 640px;
+  margin-top: 1.6rem;
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+  .home-section {
+    max-width: 820px;
+    margin-top: 3rem;
+  }
+
+  .home-section h2 {
+    margin-bottom: 1rem;
+    font-size: 2.25rem;
+  }
+
+  .home-section p {
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 900px) {
+    .poster-hero {
+      min-height: 520px;
+      padding: 3rem 0 2rem;
+    }
+
+    .hero-copy {
+      max-width: 100%;
+      padding-top: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      max-width: 32rem;
+    }
+
+    .home-section h2 {
+      font-size: 1.9rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .poster-hero {
+      min-height: 420px;
+      padding: 2.5rem 0 1.5rem;
+    }
+
+    .hero-art {
+      opacity: 0.75;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+  }
+</style>

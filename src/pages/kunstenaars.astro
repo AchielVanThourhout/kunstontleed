@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const kunstenaars = [
+  {
+    naam: 'Anna Vermeulen',
+    discipline: 'Schilderkunst',
+    beschrijving: 'Werkt met warme kleuren en figuratieve elementen.',
+    link: '/kunstenaars/anna-vermeulen'
+  },
+  {
+    naam: 'Bram De Smet',
+    discipline: 'Fotografie',
+    beschrijving: 'Legt sfeer, detail en verstilling vast in beeld.',
+    link: '/kunstenaars/bram-de-smet'
+  },
+  {
+    naam: 'Lotte Vanhee',
+    discipline: 'Beeldende kunst',
+    beschrijving: 'Combineert organische vormen met een zachte beeldtaal.',
+    link: '/kunstenaars/lotte-vanhee'
+  },
+  {
+    naam: 'Milan Deschrijver',
+    discipline: 'Mixed media',
+    beschrijving: 'Experimenteert met materiaal, textuur en gelaagdheid.',
+    link: '/kunstenaars/milan-deschrijver'
+  },
+  {
+    naam: 'Sofie Declercq',
+    discipline: 'Illustratie',
+    beschrijving: 'Maakt poëtische beelden met een speelse toets.',
+    link: '/kunstenaars/sofie-declercq'
+  },
+  {
+    naam: 'Thomas Verhelst',
+    discipline: 'Installatiekunst',
+    beschrijving: 'Zoekt de grens op tussen ruimte, object en beleving.',
+    link: '/kunstenaars/thomas-verhelst'
+  }
+];
+---
+
+<Layout>
+  <section class="artists-hero">
+    <p class="artists-kicker">Ontdek de deelnemers</p>
+    <h1>Kunstenaars</h1>
+    <p class="artists-intro">
+      Maak kennis met de kunstenaars van Kunst on(t)leed. Op deze pagina vind je
+      een overzicht van alle deelnemers aan het parcours.
+    </p>
+  </section>
+
+  <section class="artists-grid">
+    {kunstenaars.map((kunstenaar) => (
+      <article class="artist-card">
+        <p class="artist-discipline">{kunstenaar.discipline}</p>
+        <h2>{kunstenaar.naam}</h2>
+        <p class="artist-description">{kunstenaar.beschrijving}</p>
+        <a href={kunstenaar.link} class="artist-link">Bekijk kunstenaar</a>
+      </article>
+    ))}
+  </section>
+</Layout>
+
+<style>
+  .artists-hero {
+    padding: 2rem 0 1rem;
+    max-width: 760px;
+  }
+
+  .artists-kicker {
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .artists-hero h1 {
+    margin: 0;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 0.95;
+  }
+
+  .artists-intro {
+    margin-top: 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .artists-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .artist-card {
+    background-color: rgba(251, 243, 230, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    padding: 1.4rem;
+    box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
+  }
+
+  .artist-discipline {
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--title);
+  }
+
+  .artist-card h2 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.9rem;
+    line-height: 1;
+  }
+
+  .artist-description {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .artist-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--title);
+  }
+
+  .artist-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 900px) {
+    .artists-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .artists-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .artist-card h2 {
+      font-size: 1.6rem;
+    }
+  }
+</style>
