@@ -3,29 +3,21 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Parcours | Kunst on(t)leed"
-  description="Ontdek het parcours van Kunst on(t)leed in Gits en plan je kunstwandeling langs de verschillende locaties."
+  title="Parcours | Kunst On(t)leed"
+  description="Ontdek het parcours van Kunst On(t)leed in Gits en plan je kunstwandeling langs de verschillende locaties."
 >
   <section class="route-hero">
     <p class="route-kicker">Verken het traject</p>
     <h1>Parcours</h1>
-    <p class="route-intro">
-      Ontdek hier het parcours van Kunst on(t)leed. Op deze kaart zie je hoe het
-      traject doorheen de locatie loopt en waar bezoekers de verschillende
-      kunstpunten kunnen terugvinden.
-    </p>
   </section>
 
   <section class="route-map-section">
     <figure class="route-map-card">
       <img
         src="/images/parcours.png"
-        alt="Overzichtskaart van het parcours van Kunst on(t)leed"
+        alt="Overzichtskaart van het parcours van Kunst On(t)leed"
         class="route-map"
       />
-      <figcaption>
-        Overzicht van het parcours van Kunst on(t)leed.
-      </figcaption>
     </figure>
   </section>
 
@@ -33,31 +25,14 @@ import Layout from '../layouts/Layout.astro';
     <article class="route-info-card">
       <h2>Startpunt</h2>
       <p>
-        Hier kun je later vermelden waar bezoekers best starten aan het parcours.
+        Vleterstraat, 8830 Gits - ter hoogte parking ZetjeBie - richting Favorelplein
       </p>
     </article>
 
     <article class="route-info-card">
-      <h2>Wandelrichting</h2>
+      <h2>Bewegwijzering</h2>
       <p>
-        Voeg hier later extra uitleg toe over hoe bezoekers het parcours het best
-        volgen.
-      </p>
-    </article>
-
-    <article class="route-info-card">
-      <h2>Duur</h2>
-      <p>
-        Hier kun je later een schatting geven van hoe lang het parcours ongeveer
-        duurt.
-      </p>
-    </article>
-
-    <article class="route-info-card">
-      <h2>Extra info</h2>
-      <p>
-        Voeg hier later bijvoorbeeld info toe over rustpunten, toegankelijkheid
-        of praktische aandachtspunten onderweg.
+        Volg de prikkers met geel/blauwe lintjes doorheen het 2,5 km lange parcours.
       </p>
     </article>
   </section>
@@ -65,12 +40,12 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .route-hero {
-    padding: 2rem 0 1rem;
+    padding: 2rem 0 0.5rem;
     max-width: 760px;
   }
 
   .route-kicker {
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
@@ -83,20 +58,13 @@ import Layout from '../layouts/Layout.astro';
     line-height: 0.95;
   }
 
-  .route-intro {
-    margin-top: 1.25rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 700px;
-  }
-
   .route-map-section {
-    margin-top: 2.5rem;
+    margin-top: 2rem;
   }
 
   .route-map-card {
     margin: 0;
-    background-color: rgba(251, 243, 230, 0.8);
+    background-color: rgba(251, 243, 230, 0.86);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     padding: 1rem;
@@ -110,45 +78,70 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 0.9rem;
   }
 
-  .route-map-card figcaption {
-    margin-top: 0.9rem;
-    font-size: 0.95rem;
-    color: var(--text);
-  }
-
   .route-info-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-top: 2rem;
+    padding-bottom: 2.75rem;
   }
 
   .route-info-card {
-    background-color: rgba(251, 243, 230, 0.8);
+    background: linear-gradient(180deg, rgba(251, 243, 230, 0.96), rgba(245, 234, 215, 0.92));
     border: 1px solid var(--border);
     border-radius: 1.25rem;
-    padding: 1.5rem;
+    padding: 1.4rem;
     box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
   }
 
   .route-info-card h2 {
-    margin: 0 0 0.9rem 0;
+    margin: 0 0 0.8rem;
     font-size: 2rem;
     line-height: 1;
   }
 
   .route-info-card p {
     margin: 0;
-    line-height: 1.75;
+    line-height: 1.7;
+    font-size: 1.05rem;
   }
 
   @media (max-width: 700px) {
+    .route-hero {
+      padding: 1rem 0 0.35rem;
+    }
+
+    .route-kicker {
+      margin-bottom: 0.55rem;
+      font-size: 0.8rem;
+    }
+
+    .route-hero h1 {
+      font-size: clamp(2.6rem, 12vw, 3.6rem);
+    }
+
+    .route-map-section {
+      margin-top: 1.4rem;
+    }
+
     .route-info-grid {
       grid-template-columns: 1fr;
+      gap: 0.95rem;
+      margin-top: 1.4rem;
+      padding-bottom: 2.2rem;
+    }
+
+    .route-info-card {
+      padding: 1.15rem;
     }
 
     .route-info-card h2 {
-      font-size: 1.7rem;
+      font-size: 1.65rem;
+    }
+
+    .route-info-card p {
+      font-size: 1rem;
+      line-height: 1.65;
     }
   }
 </style>

@@ -3,77 +3,56 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Praktische info | Kunst on(t)leed"
-  description="Alle praktische info voor Kunst on(t)leed in Gits: locatie, bereikbaarheid, openingsuren en wat je moet weten voor je bezoek."
+  title="Praktische info | Kunst On(t)leed"
+  description="Alle praktische info voor Kunst On(t)leed in Gits: wanneer, waar, toegankelijkheid, contact en horeca."
 >
   <section class="practical-hero">
     <p class="practical-kicker">Alles op een rij</p>
     <h1>Praktische info</h1>
-    <p class="practical-intro">
-      Hier vind je alle praktische informatie voor je bezoek aan Kunst on(t)leed.
-      Deze informatie kan later nog verder aangevuld of aangepast worden.
-    </p>
   </section>
 
   <section class="practical-grid">
     <article class="info-card">
       <h2>Wanneer</h2>
-      <p>
-        Datum en openingsuren van het evenement komen hier. Je kunt later ook
-        meerdere dagen of tijdsblokken toevoegen.
-      </p>
+      <p>Van zaterdag 30 mei 2026 tot en met zondag 21 juni 2026</p>
+      <p>Gratis en permanent toegankelijk</p>
     </article>
 
     <article class="info-card">
-      <h2>Locatie</h2>
-      <p>
-        Hier komt het startpunt of het centrale adres van Kunst on(t)leed in
-        Gits, samen met extra locatie-info.
-      </p>
-    </article>
-
-    <article class="info-card">
-      <h2>Bereikbaarheid</h2>
-      <p>
-        Voeg hier info toe over parkeren, fietsenstalling, openbaar vervoer of
-        wandelroute naar het parcours.
-      </p>
+      <h2>Waar</h2>
+      <p>Onledemolen - Domein Dominiek Savio Gits</p>
+      <p>Parking en start: Vleterstraat, 8830 Gits - ter hoogte parking ZetjeBie - richting Favorelplein</p>
     </article>
 
     <article class="info-card">
       <h2>Toegankelijkheid</h2>
-      <p>
-        Hier kun je later vermelden of het parcours rolstoeltoegankelijk is,
-        waar er oneffen stukken zijn en of er hulp voorzien is.
-      </p>
-    </article>
-
-    <article class="info-card">
-      <h2>Tickets of deelname</h2>
-      <p>
-        Hier kun je zetten of het evenement gratis is, vrij toegankelijk is, of
-        dat bezoekers zich ergens moeten aanmelden.
-      </p>
+      <p>Rolstoel- en buggy toegankelijk</p>
     </article>
 
     <article class="info-card">
       <h2>Contact</h2>
       <p>
-        Voeg hier later een e-mailadres, telefoonnummer of organisatorische
-        contactgegevens toe voor vragen van bezoekers.
+        <a href="mailto:kultuurvereniging@gmail.com">kultuurvereniging@gmail.com</a>
       </p>
+      <p>Volg Kultuurvereniging Gits op Facebook en Instagram</p>
+    </article>
+
+    <article class="info-card">
+      <h2>Horeca</h2>
+      <p>Hoeve Ter Kerst: open op woensdag - vrijdag en zaterdag</p>
+      <p>Kunstcafé op Favorelplein: open op zondag</p>
     </article>
   </section>
 </Layout>
 
 <style>
   .practical-hero {
-    padding: 2rem 0 1rem;
+    padding: 2rem 0 0.5rem;
     max-width: 760px;
   }
 
   .practical-kicker {
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
@@ -86,22 +65,16 @@ import Layout from '../layouts/Layout.astro';
     line-height: 0.95;
   }
 
-  .practical-intro {
-    margin-top: 1.25rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 700px;
-  }
-
   .practical-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
+    padding-bottom: 2.75rem;
   }
 
   .info-card {
-    background-color: rgba(251, 243, 230, 0.8);
+    background: linear-gradient(180deg, rgba(251, 243, 230, 0.96), rgba(245, 234, 215, 0.92));
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     padding: 1.5rem;
@@ -109,7 +82,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .info-card h2 {
-    margin: 0 0 0.9rem 0;
+    margin: 0 0 0.9rem;
     font-size: 2rem;
     line-height: 1;
   }
@@ -117,15 +90,55 @@ import Layout from '../layouts/Layout.astro';
   .info-card p {
     margin: 0;
     line-height: 1.75;
+    font-size: 1.02rem;
+  }
+
+  .info-card p + p {
+    margin-top: 0.7rem;
+  }
+
+  .info-card a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .info-card a:hover {
+    color: var(--title);
+    text-decoration: underline;
   }
 
   @media (max-width: 700px) {
+    .practical-hero {
+      padding: 1rem 0 0.35rem;
+    }
+
+    .practical-kicker {
+      margin-bottom: 0.55rem;
+      font-size: 0.8rem;
+    }
+
+    .practical-hero h1 {
+      font-size: clamp(2.6rem, 12vw, 3.6rem);
+    }
+
     .practical-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-bottom: 2.2rem;
+    }
+
+    .info-card {
+      padding: 1.2rem;
     }
 
     .info-card h2 {
       font-size: 1.7rem;
+    }
+
+    .info-card p {
+      font-size: 1rem;
+      line-height: 1.65;
     }
   }
 </style>

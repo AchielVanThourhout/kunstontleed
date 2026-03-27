@@ -3,47 +3,50 @@ import Layout from '../layouts/Layout.astro';
 
 const agendaItems = [
   {
-    datum: 'Vrijdag 12 september 2026',
-    tijd: '19:00 – 22:00',
-    titel: 'Openingsavond',
-    beschrijving:
-      'Feestelijke start van Kunst on(t)leed met de eerste bezoekers op het parcours.'
+    datum: 'Zondag 31 mei 2026',
+    tijd: '10u',
+    titel: 'Officiële opening'
   },
   {
-    datum: 'Zaterdag 13 september 2026',
-    tijd: '14:00 – 18:00',
-    titel: 'Kunstenaars in gesprek',
-    beschrijving:
-      'Bezoekers kunnen op verschillende locaties kunstenaars ontmoeten en meer horen over hun werk.'
+    datum: 'Zondag 31 mei 2026',
+    tijd: '11u tot 18u',
+    titel: 'Kunstcafé'
   },
   {
-    datum: 'Zaterdag 13 september 2026',
-    tijd: '19:00 – 21:00',
-    titel: 'Avondmoment op het parcours',
-    beschrijving:
-      'Een extra sfeervol moment op het parcours met bijzondere accenten in de beleving.'
+    datum: 'Zondag 31 mei 2026',
+    tijd: '14u',
+    titel: 'Sip & paint (met inschrijving)'
   },
   {
-    datum: 'Zondag 14 september 2026',
-    tijd: '10:00 – 17:00',
-    titel: 'Doorlopende openstelling',
-    beschrijving:
-      'Het parcours is vrij te bezoeken en alle deelnemende locaties zijn open voor het publiek.'
+    datum: 'Zondag 7 juni 2026',
+    tijd: '11u tot 18u',
+    titel: 'Kunstcafé'
+  },
+  {
+    datum: 'Zondag 14 juni 2026',
+    tijd: '11u',
+    titel: 'Gratis tuinconcert met Otsamo - kleurrijke Indiepop'
+  },
+  {
+    datum: 'Zondag 14 juni 2026',
+    tijd: '11u tot 18u',
+    titel: 'Kunstcafé'
+  },
+  {
+    datum: 'Zondag 21 juni 2026',
+    tijd: '11u tot 18u',
+    titel: 'Kunstcafé'
   }
 ];
 ---
 
 <Layout
-  title="Agenda | Kunst on(t)leed"
-  description="Bekijk de agenda van Kunst on(t)leed in Gits en ontdek wanneer de activiteiten en bezoekmomenten plaatsvinden."
+  title="Agenda | Kunst On(t)leed"
+  description="Bekijk de agenda van Kunst On(t)leed in Gits en ontdek wanneer de activiteiten en bezoekmomenten plaatsvinden."
 >
   <section class="agenda-hero">
     <p class="agenda-kicker">Plan je bezoek</p>
     <h1>Agenda</h1>
-    <p class="agenda-intro">
-      Hier vind je een overzicht van de geplande momenten tijdens Kunst on(t)leed.
-      Deze data en uren zijn voorlopig voorbeeldinhoud en kunnen later eenvoudig aangepast worden.
-    </p>
   </section>
 
   <section class="agenda-list">
@@ -56,7 +59,6 @@ const agendaItems = [
 
         <div class="agenda-content">
           <h2>{item.titel}</h2>
-          <p>{item.beschrijving}</p>
         </div>
       </article>
     ))}
@@ -65,12 +67,12 @@ const agendaItems = [
 
 <style>
   .agenda-hero {
-    padding: 2rem 0 1rem;
+    padding: 2rem 0 0.5rem;
     max-width: 760px;
   }
 
   .agenda-kicker {
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
@@ -83,25 +85,19 @@ const agendaItems = [
     line-height: 0.95;
   }
 
-  .agenda-intro {
-    margin-top: 1.25rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 700px;
-  }
-
   .agenda-list {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
+    padding-bottom: 2.75rem;
   }
 
   .agenda-card {
     display: grid;
     grid-template-columns: 260px 1fr;
     gap: 1.5rem;
-    background-color: rgba(251, 243, 230, 0.8);
+    background: linear-gradient(180deg, rgba(251, 243, 230, 0.96), rgba(245, 234, 215, 0.92));
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     padding: 1.5rem;
@@ -126,21 +122,45 @@ const agendaItems = [
     font-weight: 700;
   }
 
-  .agenda-content h2 {
-    margin: 0 0 0.75rem 0;
-    font-size: 2rem;
-    line-height: 1;
+  .agenda-content {
+    display: flex;
+    align-items: center;
   }
 
-  .agenda-content p {
+  .agenda-content h2 {
     margin: 0;
-    line-height: 1.75;
+    font-size: 2rem;
+    line-height: 1.05;
   }
 
   @media (max-width: 800px) {
+    .agenda-hero {
+      padding: 1rem 0 0.35rem;
+    }
+
+    .agenda-kicker {
+      margin-bottom: 0.55rem;
+      font-size: 0.8rem;
+    }
+
+    .agenda-hero h1 {
+      font-size: clamp(2.6rem, 12vw, 3.6rem);
+    }
+
+    .agenda-list {
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-bottom: 2.2rem;
+    }
+
     .agenda-card {
       grid-template-columns: 1fr;
       gap: 1rem;
+      padding: 1.2rem;
+    }
+
+    .agenda-content {
+      display: block;
     }
 
     .agenda-content h2 {

@@ -1,0 +1,242 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { kunstenaars } from '../../data/kunstenaars.js';
+
+export function getStaticPaths() {
+  return kunstenaars.map((kunstenaar) => ({
+    params: { slug: kunstenaar.slug },
+    props: { kunstenaar }
+  }));
+}
+
+const { kunstenaar } = Astro.props;
+---
+
+<Layout
+  title={`${kunstenaar.naam} | Kunstenaars | Kunst On(t)leed`}
+  description={`Ontdek meer over ${kunstenaar.naam} tijdens Kunst On(t)leed.`}
+>
+  <section class="artist-detail-hero">
+    <p class="artist-detail-kicker">Kunstenaars</p>
+    <h1>{kunstenaar.naam}</h1>
+    {kunstenaar.info && <p class="artist-detail-info">{kunstenaar.info}</p>}
+  </section>
+
+  <section class="artist-detail-layout">
+    <div class="artist-detail-text">
+      <details class="artist-dropdown">
+        <summary>Wie is ?</summary>
+        <div class="artist-dropdown-content">
+          <p>{kunstenaar.wieIs}</p>
+        </div>
+      </details>
+
+      <details class="artist-dropdown">
+        <summary>Kunstwerk ?</summary>
+        <div class="artist-dropdown-content">
+          <p>{kunstenaar.kunstwerk}</p>
+        </div>
+      </details>
+
+      <details class="artist-dropdown">
+        <summary>Contactgegevens ?</summary>
+        <div class="artist-dropdown-content">
+          <p>{kunstenaar.contactgegevens}</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="artist-detail-image-card">
+      {kunstenaar.afbeelding ? (
+        <img
+          src={kunstenaar.afbeelding}
+          alt={`Kunstwerk van ${kunstenaar.naam}`}
+          class="artist-detail-image"
+        />
+      ) : (
+        <div class="artist-image-placeholder">
+          <span>Foto volgt later</span>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .artist-detail-hero {
+    padding: 2rem 0 1rem;
+    max-width: 760px;
+  }
+
+  .artist-detail-kicker {
+    margin: 0 0 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .artist-detail-hero h1 {
+    margin: 0;
+    font-size: clamp(2.8rem, 6vw, 4.4rem);
+    line-height: 0.95;
+  }
+
+  .artist-detail-info {
+    margin: 1rem 0 0;
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background-color: rgba(236, 163, 10, 0.12);
+    border: 1px solid rgba(236, 163, 10, 0.22);
+    font-size: 1rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .artist-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 420px);
+    gap: 2rem;
+    align-items: start;
+    margin-top: 1.8rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .artist-detail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .artist-dropdown {
+    background: linear-gradient(180deg, rgba(251, 243, 230, 0.96), rgba(245, 234, 215, 0.92));
+    border: 1px solid var(--border);
+    border-radius: 1.15rem;
+    box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
+    overflow: hidden;
+  }
+
+  .artist-dropdown summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.1rem 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .artist-dropdown summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .artist-dropdown summary::before {
+    content: '⌄';
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--title);
+    transition: transform 0.2s ease;
+  }
+
+  .artist-dropdown[open] summary::before {
+    transform: rotate(180deg);
+  }
+
+  .artist-dropdown-content {
+    padding: 0 1.2rem 1.2rem;
+  }
+
+  .artist-dropdown-content p {
+    margin: 0;
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  .artist-detail-image-card {
+    background: linear-gradient(180deg, rgba(251, 243, 230, 0.96), rgba(245, 234, 215, 0.92));
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    padding: 1rem;
+    box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
+  }
+
+  .artist-detail-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.9rem;
+    object-fit: cover;
+  }
+
+  .artist-image-placeholder {
+    min-height: 420px;
+    border-radius: 0.9rem;
+    background:
+      linear-gradient(180deg, rgba(236, 163, 10, 0.08), rgba(191, 101, 22, 0.08)),
+      rgba(251, 243, 230, 0.7);
+    border: 1px dashed rgba(143, 16, 39, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .artist-image-placeholder span {
+    color: var(--title);
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 900px) {
+    .artist-detail-layout {
+      grid-template-columns: 1fr;
+      gap: 1.4rem;
+    }
+
+    .artist-detail-image-card {
+      order: -1;
+    }
+
+    .artist-image-placeholder {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .artist-detail-hero {
+      padding: 1rem 0 0.5rem;
+    }
+
+    .artist-detail-kicker {
+      margin-bottom: 0.55rem;
+      font-size: 0.8rem;
+    }
+
+    .artist-detail-hero h1 {
+      font-size: clamp(2.3rem, 11vw, 3.4rem);
+    }
+
+    .artist-detail-layout {
+      margin-top: 1.2rem;
+      padding-bottom: 2.2rem;
+    }
+
+    .artist-dropdown summary {
+      padding: 1rem 1rem;
+      font-size: 1rem;
+    }
+
+    .artist-dropdown-content {
+      padding: 0 1rem 1rem;
+    }
+
+    .artist-image-placeholder {
+      min-height: 240px;
+    }
+  }
+</style>

@@ -1,66 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { kunstenaars } from '../data/kunstenaars.js';
 
-const kunstenaars = [
-  {
-    naam: 'Anna Vermeulen',
-    discipline: 'Schilderkunst',
-    beschrijving: 'Werkt met warme kleuren en figuratieve elementen.',
-    link: '/kunstenaars/anna-vermeulen'
-  },
-  {
-    naam: 'Bram De Smet',
-    discipline: 'Fotografie',
-    beschrijving: 'Legt sfeer, detail en verstilling vast in beeld.',
-    link: '/kunstenaars/bram-de-smet'
-  },
-  {
-    naam: 'Lotte Vanhee',
-    discipline: 'Beeldende kunst',
-    beschrijving: 'Combineert organische vormen met een zachte beeldtaal.',
-    link: '/kunstenaars/lotte-vanhee'
-  },
-  {
-    naam: 'Milan Deschrijver',
-    discipline: 'Mixed media',
-    beschrijving: 'Experimenteert met materiaal, textuur en gelaagdheid.',
-    link: '/kunstenaars/milan-deschrijver'
-  },
-  {
-    naam: 'Sofie Declercq',
-    discipline: 'Illustratie',
-    beschrijving: 'Maakt poëtische beelden met een speelse toets.',
-    link: '/kunstenaars/sofie-declercq'
-  },
-  {
-    naam: 'Thomas Verhelst',
-    discipline: 'Installatiekunst',
-    beschrijving: 'Zoekt de grens op tussen ruimte, object en beleving.',
-    link: '/kunstenaars/thomas-verhelst'
-  }
-];
+const kunstenaarsMetLink = kunstenaars.map((kunstenaar) => ({
+  ...kunstenaar,
+  link: `/kunstenaars/${kunstenaar.slug}/`
+}));
 ---
 
 <Layout
-  title="Kunstenaars | Kunst on(t)leed"
-  description="Maak kennis met de kunstenaars van Kunst on(t)leed in Gits en ontdek wie deelneemt aan de kunstwandeling."
+  title="Kunstenaars | Kunst On(t)leed"
+  description="Ontdek de deelnemende kunstenaars van Kunst On(t)leed in Gits."
 >
   <section class="artists-hero">
     <p class="artists-kicker">Ontdek de deelnemers</p>
     <h1>Kunstenaars</h1>
-    <p class="artists-intro">
-      Maak kennis met de kunstenaars van Kunst on(t)leed. Op deze pagina vind je
-      een overzicht van alle deelnemers aan het parcours.
-    </p>
   </section>
 
   <section class="artists-grid">
-    {kunstenaars.map((kunstenaar) => (
+    {kunstenaarsMetLink.map((kunstenaar) => (
       <article class="artist-card">
-        <p class="artist-discipline">{kunstenaar.discipline}</p>
-        <h2>{kunstenaar.naam}</h2>
-        <p class="artist-description">{kunstenaar.beschrijving}</p>
-        <a href={kunstenaar.link} class="artist-link">Bekijk kunstenaar</a>
+        <h2>
+          <a href={kunstenaar.link} class="artist-name-link">
+            {kunstenaar.naam}
+          </a>
+        </h2>
+
+        {kunstenaar.info && <p class="artist-info">{kunstenaar.info}</p>}
       </article>
     ))}
   </section>
@@ -68,12 +34,12 @@ const kunstenaars = [
 
 <style>
   .artists-hero {
-    padding: 2rem 0 1rem;
+    padding: 2rem 0 0.4rem;
     max-width: 760px;
   }
 
   .artists-kicker {
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.9rem;
@@ -82,77 +48,105 @@ const kunstenaars = [
 
   .artists-hero h1 {
     margin: 0;
-    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-size: clamp(3rem, 6vw, 4.8rem);
     line-height: 0.95;
-  }
-
-  .artists-intro {
-    margin-top: 1.25rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    max-width: 700px;
   }
 
   .artists-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.15rem;
+    margin-top: 1.9rem;
+    margin-bottom: 2.75rem;
   }
 
   .artist-card {
-    background-color: rgba(251, 243, 230, 0.8);
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
+    padding: 1.35rem 1.35rem 1.2rem;
+    background: linear-gradient(180deg, rgba(251, 243, 230, 0.96), rgba(245, 234, 215, 0.92));
     border: 1px solid var(--border);
-    border-radius: 1.25rem;
-    padding: 1.4rem;
-    box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
+    border-radius: 1.35rem;
+    box-shadow: 0 10px 26px rgba(58, 36, 31, 0.05);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
 
-  .artist-discipline {
-    margin: 0 0 0.75rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--title);
+  .artist-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(58, 36, 31, 0.08);
+    border-color: rgba(143, 16, 39, 0.18);
   }
 
   .artist-card h2 {
-    margin: 0 0 0.75rem 0;
-    font-size: 1.9rem;
-    line-height: 1;
-  }
-
-  .artist-description {
     margin: 0;
-    line-height: 1.7;
+    font-size: clamp(1.9rem, 2.9vw, 2.45rem);
+    line-height: 1;
+    text-wrap: balance;
   }
 
-  .artist-link {
-    display: inline-block;
-    margin-top: 1.2rem;
-    text-decoration: none;
-    font-weight: 700;
+  .artist-name-link,
+  .artist-name-link:visited,
+  .artist-name-link:hover,
+  .artist-name-link:focus {
     color: var(--title);
+    text-decoration: none;
   }
 
-  .artist-link:hover {
-    text-decoration: underline;
+  .artist-name-link:hover {
+    opacity: 0.82;
   }
 
-  @media (max-width: 900px) {
-    .artists-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  .artist-info {
+    margin: auto 0 0;
+    align-self: flex-start;
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background-color: rgba(236, 163, 10, 0.12);
+    border: 1px solid rgba(236, 163, 10, 0.22);
+    font-size: 0.98rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: var(--text);
   }
 
   @media (max-width: 600px) {
+    .artists-hero {
+      padding: 1rem 0 0.2rem;
+    }
+
+    .artists-kicker {
+      font-size: 0.8rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .artists-hero h1 {
+      font-size: clamp(2.6rem, 12vw, 3.6rem);
+    }
+
     .artists-grid {
       grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .artist-card {
+      min-height: 132px;
+      padding: 1.1rem 1.1rem 1rem;
+      border-radius: 1.15rem;
     }
 
     .artist-card h2 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
+    }
+
+    .artist-info {
+      margin: auto 0 0;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.95rem;
+      line-height: 1.2;
     }
   }
 </style>
