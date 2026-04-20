@@ -10,6 +10,7 @@ export function getStaticPaths() {
 }
 
 const { kunstenaar } = Astro.props;
+const afbeeldingen = kunstenaar.afbeeldingen ?? [];
 ---
 
 <Layout
@@ -47,12 +48,47 @@ const { kunstenaar } = Astro.props;
     </div>
 
     <div class="artist-detail-image-card">
-      {kunstenaar.afbeelding ? (
-        <img
-          src={kunstenaar.afbeelding}
-          alt={`Kunstwerk van ${kunstenaar.naam}`}
-          class="artist-detail-image"
-        />
+      {afbeeldingen.length > 0 ? (
+        <div class="artist-carousel" data-carousel>
+          <div class="artist-carousel-slides">
+            {afbeeldingen.map((afbeelding, index) => (
+              <img
+                src={afbeelding}
+                alt={`Kunstwerk van ${kunstenaar.naam} - foto ${index + 1}`}
+                class:list={[
+                  'artist-detail-image',
+                  'artist-carousel-image',
+                  index === 0 && 'is-active'
+                ]}
+              />
+            ))}
+          </div>
+
+          {afbeeldingen.length > 1 && (
+            <>
+              <button class="artist-carousel-button prev" type="button" aria-label="Vorige foto">
+                ‹
+              </button>
+              <button class="artist-carousel-button next" type="button" aria-label="Volgende foto">
+                ›
+              </button>
+
+              <div class="artist-carousel-dots">
+                {afbeeldingen.map((_, index) => (
+                  <button
+                    class:list={[
+                      'artist-carousel-dot',
+                      index === 0 && 'is-active'
+                    ]}
+                    type="button"
+                    aria-label={`Ga naar foto ${index + 1}`}
+                    data-index={index}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       ) : (
         <div class="artist-image-placeholder">
           <span>Foto volgt later</span>
@@ -60,6 +96,81 @@ const { kunstenaar } = Astro.props;
       )}
     </div>
   </section>
+
+  <script is:inline>
+    function initArtistCarousels() {
+      document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+        if (carousel.dataset.initialized === 'true') return;
+        carousel.dataset.initialized = 'true';
+
+        const images = carousel.querySelectorAll('.artist-carousel-image');
+        const dots = carousel.querySelectorAll('.artist-carousel-dot');
+        const prevButton = carousel.querySelector('.artist-carousel-button.prev');
+        const nextButton = carousel.querySelector('.artist-carousel-button.next');
+
+        if (images.length <= 1) return;
+
+        let currentIndex = 0;
+        let autoplayId;
+
+        const showSlide = (index) => {
+          images[currentIndex]?.classList.remove('is-active');
+          dots[currentIndex]?.classList.remove('is-active');
+
+          currentIndex = index;
+
+          images[currentIndex]?.classList.add('is-active');
+          dots[currentIndex]?.classList.add('is-active');
+        };
+
+        const nextSlide = () => {
+          const nextIndex = (currentIndex + 1) % images.length;
+          showSlide(nextIndex);
+        };
+
+        const prevSlide = () => {
+          const prevIndex = (currentIndex - 1 + images.length) % images.length;
+          showSlide(prevIndex);
+        };
+
+        const startAutoplay = () => {
+          stopAutoplay();
+          autoplayId = window.setInterval(nextSlide, 5000);
+        };
+
+        const stopAutoplay = () => {
+          if (autoplayId) {
+            window.clearInterval(autoplayId);
+          }
+        };
+
+        prevButton?.addEventListener('click', () => {
+          prevSlide();
+          startAutoplay();
+        });
+
+        nextButton?.addEventListener('click', () => {
+          nextSlide();
+          startAutoplay();
+        });
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            showSlide(index);
+            startAutoplay();
+          });
+        });
+
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
+
+        startAutoplay();
+      });
+    }
+
+    initArtistCarousels();
+    document.addEventListener('astro:page-load', initArtistCarousels);
+  </script>
 </Layout>
 
 <style>
@@ -154,6 +265,7 @@ const { kunstenaar } = Astro.props;
     margin: 0;
     line-height: 1.75;
     font-size: 1rem;
+    white-space: pre-line;
   }
 
   .artist-detail-image-card {
@@ -170,6 +282,81 @@ const { kunstenaar } = Astro.props;
     height: auto;
     border-radius: 0.9rem;
     object-fit: cover;
+  }
+
+  .artist-carousel {
+    position: relative;
+  }
+
+  .artist-carousel-slides {
+    position: relative;
+  }
+
+  .artist-carousel-image {
+    display: none;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0.9rem;
+    background: rgba(251, 243, 230, 0.8);
+  }
+
+  .artist-carousel-image.is-active {
+    display: block;
+  }
+
+  .artist-carousel-button {
+    position: absolute;
+    top: calc(50% - 1.3rem);
+    transform: translateY(-50%);
+    width: 2.6rem;
+    height: 2.6rem;
+    border: none;
+    border-radius: 999px;
+    background: rgba(58, 36, 31, 0.72);
+    color: #fff;
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .artist-carousel-button:hover {
+    background: rgba(58, 36, 31, 0.88);
+  }
+
+  .artist-carousel-button.prev {
+    left: 0.7rem;
+  }
+
+  .artist-carousel-button.next {
+    right: 0.7rem;
+  }
+
+  .artist-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 0.9rem;
+  }
+
+  .artist-carousel-dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(58, 36, 31, 0.22);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .artist-carousel-dot.is-active {
+    background: var(--title);
+    transform: scale(1.08);
   }
 
   .artist-image-placeholder {
@@ -233,6 +420,12 @@ const { kunstenaar } = Astro.props;
 
     .artist-dropdown-content {
       padding: 0 1rem 1rem;
+    }
+
+    .artist-carousel-button {
+      width: 2.3rem;
+      height: 2.3rem;
+      font-size: 1.45rem;
     }
 
     .artist-image-placeholder {
