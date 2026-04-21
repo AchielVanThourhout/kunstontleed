@@ -14,8 +14,15 @@ const agendaItems = [
   },
   {
     datum: 'Zondag 31 mei 2026',
-    tijd: '14u',
-    titel: 'Sip & paint (met inschrijving)'
+    tijd: '13u30',
+    titel: 'Sip & Paint (met inschrijving)',
+    href: '/sip-and-paint/'
+  },
+  {
+    datum: 'Zondag 31 mei 2026',
+    tijd: '16u30',
+    titel: 'Sip & Paint (met inschrijving)',
+    href: '/sip-and-paint/'
   },
   {
     datum: 'Zondag 7 juni 2026',
@@ -58,7 +65,13 @@ const agendaItems = [
         </div>
 
         <div class="agenda-content">
-          <h2>{item.titel}</h2>
+          {item.href ? (
+            <h2>
+              <a href={item.href} class="agenda-title-link">{item.titel}</a>
+            </h2>
+          ) : (
+            <h2>{item.titel}</h2>
+          )}
         </div>
       </article>
     ))}
@@ -131,6 +144,16 @@ const agendaItems = [
     margin: 0;
     font-size: 2rem;
     line-height: 1.05;
+  }
+
+  .agenda-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .agenda-title-link:hover {
+    opacity: 0.75;
   }
 
   @media (max-width: 800px) {

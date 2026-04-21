@@ -18,6 +18,8 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
   description={`Ontdek meer over ${kunstenaar.naam} tijdens Kunst On(t)leed.`}
 >
   <section class="artist-detail-hero">
+    <a href="/kunstenaars" class="artist-back-link">← Terug naar kunstenaars</a>
+
     <p class="artist-detail-kicker">Kunstenaars</p>
     <h1>{kunstenaar.naam}</h1>
     {kunstenaar.info && <p class="artist-detail-info">{kunstenaar.info}</p>}
@@ -50,7 +52,7 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
     <div class="artist-detail-image-card">
       {afbeeldingen.length > 0 ? (
         <div class="artist-carousel" data-carousel>
-          <div class="artist-carousel-slides">
+          <div class="artist-carousel-slides" data-carousel-slides>
             {afbeeldingen.map((afbeelding, index) => (
               <img
                 src={afbeelding}
@@ -60,6 +62,11 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
                   'artist-carousel-image',
                   index === 0 && 'is-active'
                 ]}
+                data-carousel-image
+                data-index={index}
+                tabindex="0"
+                role="button"
+                aria-label={`Open foto ${index + 1} groter`}
               />
             ))}
           </div>
@@ -72,20 +79,6 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
               <button class="artist-carousel-button next" type="button" aria-label="Volgende foto">
                 ›
               </button>
-
-              <div class="artist-carousel-dots">
-                {afbeeldingen.map((_, index) => (
-                  <button
-                    class:list={[
-                      'artist-carousel-dot',
-                      index === 0 && 'is-active'
-                    ]}
-                    type="button"
-                    aria-label={`Ga naar foto ${index + 1}`}
-                    data-index={index}
-                  />
-                ))}
-              </div>
             </>
           )}
         </div>
@@ -97,30 +90,71 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
     </div>
   </section>
 
+  {afbeeldingen.length > 0 && (
+    <div class="artist-lightbox" data-lightbox aria-hidden="true">
+      <button class="artist-lightbox-close" type="button" aria-label="Sluiten">
+        ×
+      </button>
+
+      {afbeeldingen.length > 1 && (
+        <button class="artist-lightbox-button prev" type="button" aria-label="Vorige foto">
+          ‹
+        </button>
+      )}
+
+      <div class="artist-lightbox-content" data-lightbox-content>
+        <img
+          src={afbeeldingen[0]}
+          alt={`Kunstwerk van ${kunstenaar.naam} groot weergegeven`}
+          class="artist-lightbox-image"
+          data-lightbox-image
+        />
+      </div>
+
+      {afbeeldingen.length > 1 && (
+        <button class="artist-lightbox-button next" type="button" aria-label="Volgende foto">
+          ›
+        </button>
+      )}
+    </div>
+  )}
+
   <script is:inline>
     function initArtistCarousels() {
       document.querySelectorAll('[data-carousel]').forEach((carousel) => {
         if (carousel.dataset.initialized === 'true') return;
         carousel.dataset.initialized = 'true';
 
-        const images = carousel.querySelectorAll('.artist-carousel-image');
-        const dots = carousel.querySelectorAll('.artist-carousel-dot');
+        const images = carousel.querySelectorAll('[data-carousel-image]');
+        const slides = carousel.querySelector('[data-carousel-slides]');
         const prevButton = carousel.querySelector('.artist-carousel-button.prev');
         const nextButton = carousel.querySelector('.artist-carousel-button.next');
 
-        if (images.length <= 1) return;
+        const lightbox = document.querySelector('[data-lightbox]');
+        const lightboxImage = lightbox?.querySelector('[data-lightbox-image]');
+        const lightboxContent = lightbox?.querySelector('[data-lightbox-content]');
+        const lightboxClose = lightbox?.querySelector('.artist-lightbox-close');
+        const lightboxPrev = lightbox?.querySelector('.artist-lightbox-button.prev');
+        const lightboxNext = lightbox?.querySelector('.artist-lightbox-button.next');
+
+        if (!images.length) return;
 
         let currentIndex = 0;
         let autoplayId;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let lightboxTouchStartX = 0;
+        let lightboxTouchEndX = 0;
 
         const showSlide = (index) => {
           images[currentIndex]?.classList.remove('is-active');
-          dots[currentIndex]?.classList.remove('is-active');
-
           currentIndex = index;
-
           images[currentIndex]?.classList.add('is-active');
-          dots[currentIndex]?.classList.add('is-active');
+
+          if (lightboxImage && lightbox.classList.contains('is-open')) {
+            lightboxImage.src = images[currentIndex].getAttribute('src');
+            lightboxImage.alt = images[currentIndex].getAttribute('alt') ?? '';
+          }
         };
 
         const nextSlide = () => {
@@ -134,14 +168,36 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
         };
 
         const startAutoplay = () => {
+          if (images.length <= 1) return;
           stopAutoplay();
-          autoplayId = window.setInterval(nextSlide, 5000);
+          autoplayId = window.setInterval(nextSlide, 6000);
         };
 
         const stopAutoplay = () => {
           if (autoplayId) {
             window.clearInterval(autoplayId);
           }
+        };
+
+        const openLightbox = (index) => {
+          if (!lightbox || !lightboxImage) return;
+
+          showSlide(index);
+          lightboxImage.src = images[currentIndex].getAttribute('src');
+          lightboxImage.alt = images[currentIndex].getAttribute('alt') ?? '';
+          lightbox.classList.add('is-open');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('lightbox-open');
+          stopAutoplay();
+        };
+
+        const closeLightbox = () => {
+          if (!lightbox) return;
+
+          lightbox.classList.remove('is-open');
+          lightbox.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('lightbox-open');
+          startAutoplay();
         };
 
         prevButton?.addEventListener('click', () => {
@@ -154,15 +210,87 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
           startAutoplay();
         });
 
-        dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
-            showSlide(index);
-            startAutoplay();
+        images.forEach((image, index) => {
+          image.addEventListener('click', () => openLightbox(index));
+
+          image.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              openLightbox(index);
+            }
           });
         });
 
         carousel.addEventListener('mouseenter', stopAutoplay);
         carousel.addEventListener('mouseleave', startAutoplay);
+
+        slides?.addEventListener('touchstart', (event) => {
+          touchStartX = event.changedTouches[0].clientX;
+        });
+
+        slides?.addEventListener('touchend', (event) => {
+          touchEndX = event.changedTouches[0].clientX;
+          const diff = touchEndX - touchStartX;
+
+          if (Math.abs(diff) < 50) return;
+
+          if (diff < 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+
+          startAutoplay();
+        });
+
+        lightboxClose?.addEventListener('click', closeLightbox);
+
+        lightbox?.addEventListener('click', (event) => {
+          if (event.target === lightbox) {
+            closeLightbox();
+          }
+        });
+
+        lightboxPrev?.addEventListener('click', () => {
+          prevSlide();
+        });
+
+        lightboxNext?.addEventListener('click', () => {
+          nextSlide();
+        });
+
+        lightboxContent?.addEventListener('touchstart', (event) => {
+          lightboxTouchStartX = event.changedTouches[0].clientX;
+        });
+
+        lightboxContent?.addEventListener('touchend', (event) => {
+          lightboxTouchEndX = event.changedTouches[0].clientX;
+          const diff = lightboxTouchEndX - lightboxTouchStartX;
+
+          if (Math.abs(diff) < 50) return;
+
+          if (diff < 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (!lightbox || !lightbox.classList.contains('is-open')) return;
+
+          if (event.key === 'Escape') {
+            closeLightbox();
+          }
+
+          if (event.key === 'ArrowRight' && images.length > 1) {
+            nextSlide();
+          }
+
+          if (event.key === 'ArrowLeft' && images.length > 1) {
+            prevSlide();
+          }
+        });
 
         startAutoplay();
       });
@@ -177,6 +305,21 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
   .artist-detail-hero {
     padding: 2rem 0 1rem;
     max-width: 760px;
+  }
+
+  .artist-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+    color: var(--title);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  .artist-back-link:hover {
+    text-decoration: underline;
   }
 
   .artist-detail-kicker {
@@ -281,7 +424,6 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
     width: 100%;
     height: auto;
     border-radius: 0.9rem;
-    object-fit: cover;
   }
 
   .artist-carousel {
@@ -300,6 +442,7 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
     object-position: center;
     border-radius: 0.9rem;
     background: rgba(251, 243, 230, 0.8);
+    cursor: zoom-in;
   }
 
   .artist-carousel-image.is-active {
@@ -308,55 +451,36 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
 
   .artist-carousel-button {
     position: absolute;
-    top: calc(50% - 1.3rem);
+    top: 50%;
     transform: translateY(-50%);
-    width: 2.6rem;
-    height: 2.6rem;
-    border: none;
+    width: 2.35rem;
+    height: 2.35rem;
+    border: 1px solid rgba(58, 36, 31, 0.12);
     border-radius: 999px;
-    background: rgba(58, 36, 31, 0.72);
-    color: #fff;
-    font-size: 1.7rem;
+    background: rgba(251, 243, 230, 0.86);
+    color: var(--title);
+    font-size: 1.55rem;
     line-height: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 18px rgba(58, 36, 31, 0.08);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   }
 
   .artist-carousel-button:hover {
-    background: rgba(58, 36, 31, 0.88);
+    background: rgba(251, 243, 230, 0.98);
+    box-shadow: 0 8px 22px rgba(58, 36, 31, 0.12);
   }
 
   .artist-carousel-button.prev {
-    left: 0.7rem;
+    left: 0.75rem;
   }
 
   .artist-carousel-button.next {
-    right: 0.7rem;
-  }
-
-  .artist-carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.45rem;
-    margin-top: 0.9rem;
-  }
-
-  .artist-carousel-dot {
-    width: 0.65rem;
-    height: 0.65rem;
-    border-radius: 999px;
-    border: none;
-    background: rgba(58, 36, 31, 0.22);
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
-  }
-
-  .artist-carousel-dot.is-active {
-    background: var(--title);
-    transform: scale(1.08);
+    right: 0.75rem;
   }
 
   .artist-image-placeholder {
@@ -379,6 +503,87 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
     font-size: 1.05rem;
   }
 
+  .artist-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(30, 20, 17, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .artist-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .artist-lightbox-content {
+    max-width: min(90vw, 980px);
+    max-height: 82vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .artist-lightbox-image {
+    max-width: 100%;
+    max-height: 82vh;
+    display: block;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .artist-lightbox-close,
+  .artist-lightbox-button {
+    position: absolute;
+    border: none;
+    border-radius: 999px;
+    background: rgba(251, 243, 230, 0.92);
+    color: var(--title);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  }
+
+  .artist-lightbox-close {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .artist-lightbox-button {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.9rem;
+    height: 2.9rem;
+    font-size: 1.9rem;
+    line-height: 1;
+  }
+
+  .artist-lightbox-button.prev {
+    left: 1.25rem;
+  }
+
+  .artist-lightbox-button.next {
+    right: 1.25rem;
+  }
+
+  :global(body.lightbox-open) {
+    overflow: hidden;
+  }
+
   @media (max-width: 900px) {
     .artist-detail-layout {
       grid-template-columns: 1fr;
@@ -397,6 +602,11 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
   @media (max-width: 600px) {
     .artist-detail-hero {
       padding: 1rem 0 0.5rem;
+    }
+
+    .artist-back-link {
+      margin-bottom: 0.8rem;
+      font-size: 0.92rem;
     }
 
     .artist-detail-kicker {
@@ -423,9 +633,35 @@ const afbeeldingen = kunstenaar.afbeeldingen ?? [];
     }
 
     .artist-carousel-button {
-      width: 2.3rem;
-      height: 2.3rem;
-      font-size: 1.45rem;
+      width: 2.15rem;
+      height: 2.15rem;
+      font-size: 1.35rem;
+    }
+
+    .artist-lightbox {
+      padding: 1rem;
+    }
+
+    .artist-lightbox-close {
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 2.45rem;
+      height: 2.45rem;
+      font-size: 1.8rem;
+    }
+
+    .artist-lightbox-button {
+      width: 2.45rem;
+      height: 2.45rem;
+      font-size: 1.55rem;
+    }
+
+    .artist-lightbox-button.prev {
+      left: 0.6rem;
+    }
+
+    .artist-lightbox-button.next {
+      right: 0.6rem;
     }
 
     .artist-image-placeholder {

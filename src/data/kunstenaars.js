@@ -216,7 +216,8 @@ export const kunstenaars = [
       '/images/kunstenaars/leen-clybouw/1.jpg',
       '/images/kunstenaars/leen-clybouw/2.jpg',
       '/images/kunstenaars/leen-clybouw/3.jpg',
-      '/images/kunstenaars/leen-clybouw/4.jpg'
+      '/images/kunstenaars/leen-clybouw/4.jpg',
+      '/images/kunstenaars/leen-clybouw/5.jpg'
     ],
     wieIs: `Leen Clybouw (°1963, Oostende; afkomstig uit Torhout) schildert abstract-expressionistische werken en werkt ook met klei. Voor haar is keramiek niet alleen een eindproduct, maar een dialoog met klei, vuur en tijd.`,
     kunstwerk: `Met "Blauwe evenwichten in balans en stilte" toont ze een keramisch werk waarin stilte, gewicht en evenwicht samenkomen. De bollen leunen naar elkaar toe zonder elkaar te raken; net in die spanning ontstaat rust.`,
@@ -282,6 +283,7 @@ export const kunstenaars = [
       '/images/kunstenaars/rita-craeynest/2.jpg',
       '/images/kunstenaars/rita-craeynest/3.jpeg',
       '/images/kunstenaars/rita-craeynest/4.jpg',
+      '/images/kunstenaars/rita-craeynest/5.jpg'
     ],
     wieIs: 'Info volgt later.',
     kunstwerk: 'Info over het kunstwerk volgt later.',
