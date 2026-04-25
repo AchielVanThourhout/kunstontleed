@@ -7,7 +7,8 @@ export const kunstenaars = [
       '/images/kunstenaars/bea-steen/1.jpg',
       '/images/kunstenaars/bea-steen/2.jpg',
       '/images/kunstenaars/bea-steen/3.jpg',
-      '/images/kunstenaars/bea-steen/4.jpg',],
+      '/images/kunstenaars/bea-steen/4.jpg',
+    ],
     wieIs: `Bea Steen (°1959, Leke) ontdekte haar passie voor klei jaren geleden op een zolderkamer met vier vrienden. Via opleidingen, workshops en veel experiment is het spelen en creëren met klei voor haar een blijvende uitdaging geworden.`,
     kunstwerk: `Ze toont "Blijvende Bloemen": bewegende, blijvende bloemen in keramiek. Elke bloem is uniek opgebouwd in klei, afgewerkt met glazuur en gebakken op 1250 °C.`,
     contactgegevens: `bea.steen@telenet.be`
@@ -42,7 +43,10 @@ export const kunstenaars = [
     naam: 'Christian Dedeene',
     slug: 'christian-dedeene',
     info: 'Hout en metaal',
-    afbeeldingen: ['...'],
+    afbeeldingen: [
+      '/images/kunstenaars/christian-dedeene/1.jpg',
+      '/images/kunstenaars/christian-dedeene/2.jpg'
+    ],
     wieIs: `Christian Dedeene (°1959, Oostende) verwerkt oude, afgedankte kruisbeelden tot nieuwe hedendaagse werken. Daarmee wil hij die beelden opnieuw aandacht en betekenis geven.`,
     kunstwerk: `Hij toont "The power" in hout en metaal. Het werk verbeeldt de kracht van het kruisbeeld dat na twintig eeuwen uit zijn voegen barst en opnieuw vernieuwde aandacht vraagt.`,
     contactgegevens: `christian.dedeene1@telenet.be`
@@ -78,11 +82,13 @@ export const kunstenaars = [
   {
     naam: 'David Smulders',
     slug: 'david-smulders',
-    info: '',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    info: 'Cortenstaal',
+    afbeeldingen: ['/images/kunstenaars/david-smulders/1.jpeg'],
+    wieIs: `David Smulders (°1975) is een abstract constructief multi-artiest die zich beweegt in de wereld van abstractie en geometrische verhoudingen. Hij ontwerpt handgetufte tapijten, schilderijen en beelden.`,
+    kunstwerk: `Hij toont "X - Vex 2" in cortenstaal. Het werk ontstond uit een schilderij waarvan hij een stuk gebruikte en driedimensionaal voorstelde. Daardoor kan je rond het werk wandelen en wordt het langs elke zijde interessant.`,
+    contactgegevens: `smuldersdavid@gmail.com
+  0496 40 81 78
+  Instagram: davidsmulders`
   },
   {
     naam: 'Els Vermandere',
@@ -97,9 +103,15 @@ export const kunstenaars = [
     naam: 'Erwin David',
     slug: 'erwin-david',
     info: 'Recuperatiemetaal',
-    afbeeldingen: ['...'],
+    afbeeldingen: [
+      '/images/kunstenaars/erwin-david/1.jpg',
+      '/images/kunstenaars/erwin-david/2.png',
+      '/images/kunstenaars/erwin-david/3.png',
+      '/images/kunstenaars/erwin-david/4.jpg',
+      '/images/kunstenaars/erwin-david/5.jpg'
+    ],
     wieIs: `Erwin David (°1964, Oostende) is autodidact en werkt onder de naam dAS Metaal Art. Vanuit Snaaskerke transformeert hij afgedankte metalen materialen tot abstracte kunstwerken. Hij is winnaar van de Cultuurprijs 2024 in Gistel en oprichter en voorzitter van Kunstkring dAS Art.`,
-    kunstwerk: `Met "Feniks" toont hij recup art waarin hergebruik centraal staat: afgedankte materialen krijgen een tweede leven in een nieuw beeld. Zijn werk speelt met herkenning, verbeelding en de zichtbaarheid van het oorspronkelijke materiaal.`,
+    kunstwerk: `Met "dAS Metaal Art" toont hij recup art waarin hergebruik centraal staat: afgedankte materialen krijgen een tweede leven in een nieuw beeld. Zijn werk speelt met herkenning, verbeelding en de zichtbaarheid van het oorspronkelijke materiaal.`,
     contactgegevens: `Dorpsstraat 91, 8470 Snaaskerke
   0498 23 71 59
   erwindavid@telenet.be
@@ -135,23 +147,24 @@ export const kunstenaars = [
     contactgegevens: 'Contactgegevens volgen later.'
   },
   {
-    naam: 'Geert Corneillie',
+    naam: 'Geert Corneillie (Kornul)',
     slug: 'geert-corneillie',
     info: 'Brons',
     afbeeldingen: ['/images/kunstenaars/geert-corneillie/1.jpeg'],
     wieIs: `Geert Corneillie, ook werkend onder de naam Kornul, is al decennialang bezig met het maken van beelden. Hij plukt zijn inspiratie uit de natuur, dieren en mensen, vaak met een speelse of menselijke toets.`,
-    kunstwerk: `Voor Kunst On(t)leed brengt hij bronzen werken zoals "Danseresje met bollen" en "Artieste": speelse figuren vol beweging, karakter en lichtheid.`,
+    kunstwerk: `Voor Kunst On(t)leed brengt hij het bronzen werk "Evenwicht": een speelse figuur vol beweging, karakter en lichtheid.`,
     contactgegevens: `geert.corneillie@gmail.com
   0495 76 14 53`
   },
   {
     naam: 'Greet Decleir',
     slug: 'greet-decleir',
-    info: '',
+    info: 'Cortenstaal, inox en geschilderd aluminium',
     afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    wieIs: `Greet Decleir (°1963, Torhout) werkt onder de naam Silent Silhouettes. Haar werk ontstaat vanuit een sterke drang om momenten die ertoe doen niet verloren te laten gaan. Met Silent Silhouettes vertaalt ze betekenisvolle gebeurtenissen en herinneringen naar verstilde beelden in de natuur. De combinatie van fotografie en metaal laat haar toe om vluchtige momenten om te zetten in iets tastbaars en blijvends.`,
+    kunstwerk: `Ze toont onder meer "Henri", "Hannah" en "Odette". Haar werk vertrekt vanuit fotografie in natuurlijk licht, waarbij de keuze van het juiste beeld cruciaal is. Elk werk begint bij een echt moment, vastgelegd in één foto die de basis vormt van het uiteindelijke kunstwerk. Met silhouetten in de natuur herleidt ze dat beeld tot essentiële vormen en contrasten, zodat het verhaal leesbaar blijft zonder details. Zo ontstaan krachtige, minimalistische beelden waarin elke lijn en vorm bijdraagt aan wat echt telt.`,
+    contactgegevens: `Hoogledestraat 122
+  8610 Kortemark`
   },
   {
     naam: 'Henk Korthuys',
@@ -185,28 +198,58 @@ export const kunstenaars = [
     naam: 'Kathleen Boussauw',
     slug: 'kathleen-boussauw',
     info: 'Polyester stoel',
-    afbeeldingen: ['...'],
+    afbeeldingen: ['/images/kunstenaars/kathleen-boussauw/1.jpeg'],
     wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    kunstwerk: `Het werk is gemaakt naar aanleiding van het plotse overlijden van een collega; overlijden dat bij donderslag binnenkwam op de werkvloer.
+
+  De stoel staat symbool voor de lege (werk)plek - bureauplek.
+
+  De vorm van de stoel (het silhouet) refereert naar het ‘ineenzakken’ van mensen die plots slecht nieuws krijgen bvb op een afdeling spoed.
+
+  Mensen slaan hun handen voor hun gezicht op dat moment: een afdruk van ineengeslagen handen is dus verwerkt in de stoel.
+
+  materiaal: polyester`,
+    contactgegevens: `Kathleen Boussauw
+    1957, Diksmuide
+  0487/905199`
   },
   {
     naam: 'Koen Vandewalle',
     slug: 'koen-vandewalle',
     info: 'Hout',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    afbeeldingen: [
+    '/images/kunstenaars/koen-vandewalle/1.jpg',
+    '/images/kunstenaars/koen-vandewalle/2.jpeg'
+  ],
+    wieIs: `Ondertussen een kleine 20 jaar bezig met houtsculpturen maken met kettingzaag, waarbij de grootste uitdaging is om zo gedetailleerd mogelijk met de kettingzaag te werken.  Wat begon als een hobby groeide uit tot bijberoep mede dankzij de grote vraag, ondertussen zal dit de 4de keer zijn dat ik in Gits exposeer, 2x deelname aan Watuku (2015 en 2019) en 1 x bij Gitse keramiek kunstenaar Yvan Chys tijdens 'Buren bij kunstenaars'
+Je kan mijn werken overal tegenkomen, in de natuurgebieden of in tuinen.`,
+    kunstwerk: `Nature Creation
+
+Sculptuur gemaakt tijdens carving wedstrijd te Sittard, volledig uit eigen inspiratie wat ik liefste maak, dierensculpturen.`,
+    contactgegevens: `vandewalle.koen@yahoo.com
+website: www.carving-koen.be
+gsm 0494/064953`
   },
   {
     naam: 'Laurent Geers',
     slug: 'laurent-geers',
     info: '',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    afbeeldingen: [
+      '/images/kunstenaars/laurent-geers/1.jpg',
+      '/images/kunstenaars/laurent-geers/2.jpg'
+    ],
+    wieIs: `Reeds op jonge leeftijd was hij gefascineerd door de klassieke Grieks en Romeinse beelden
+zijn werken zijn anonieme fragmenten van mozaïeken; maar in 3 D
+De steentjes zijn in marmer versterkt met cement.
+`,
+    kunstwerk: `1. Twijfel
+    2. Izabelle zijkant
+    3. WHY
+    4. Why man leave home`,
+    contactgegevens: `Laurent Geers
+Kortrijk 1944
+laurent.geers@skynet.be en facebook
+`
   },
   {
     naam: 'Leen Clybouw',
@@ -226,11 +269,19 @@ export const kunstenaars = [
   {
     naam: 'Louise Kerkaert',
     slug: 'louise-kerkaert',
-    info: '',
+    info: 'Acrylstift op papier',
     afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    wieIs: `Louise Kerkaert is een jonge kunstenares uit Gits. In 2024 nam ze met succes deel aan "Non-stop Kunst", een groepstentoonstelling in eigen gemeente. Later dat jaar was ze laureate op de Nationale Ensorwedstrijd georganiseerd door KBR (Koninklijke Bibliotheek van België), VRT en MuseumPASSmusées met haar werk "De vreemdeling" dat geveild werd voor het goede doel. Sindsdien maakte ze verschillende unieke werken met acrylstift op canvas of papier.`,
+    kunstwerk: `"Alles tegelijk" en "Grenzen"
+
+"Alles Tegelijk" (met kleuren rood geel wit blauw en paars)
+
+Het schilderij toont een levendige, speelse energie waarin kleur en vorm met elkaar in dialoog gaan. Het bestaat uit een verzameling van losse elementen die weigeren om één richting te volgen. En toch, wanneer je langer kijkt, merk je dat juist die complexiteit een evenwicht creëert. Niet door controle, maar doordat niets wordt uitgesloten. Soms botsen ze, soms vloeien ze in elkaar over. In de chaos van vormen en kleuren ontstaat pas betekenis wanneer alles naast elkaar mag bestaan.
+
+"Grenzen" (zwart wit)
+
+Drie zwarte strepen die op het eerste zicht zeer eenvoudig lijken, maar een sterke aanwezigheid hebben, bepalen het centrum van dit werk. Ze raken elkaar niet, alsof ze grenzen bewaken. Tussen hen ontstaan doodles die als bruggen fungeren. Die fijne lijnen doorbreken de afstand en maken verbinding mogelijk waar de hoofdvormen dat niet doen. Het toont het belang van verbintenis in een wereld waarin grenzen mensen van elkaar scheiden.`,
+    contactgegevens: `louise.kerkaert@telenet.be`
   },
   {
     naam: 'Luc Verbeke',
@@ -268,11 +319,19 @@ export const kunstenaars = [
   {
     naam: 'Patrick Vanderstichele',
     slug: 'patrick-vanderstichele',
-    info: '',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    info: 'Carrara Marmer',
+    afbeeldingen: [
+      '/images/kunstenaars/patrick-vanderstichele/1.jpg',
+      '/images/kunstenaars/patrick-vanderstichele/2.png'
+    ],
+    wieIs: `Na een drukke carrière in het bedrijfsleven had ik nood aan een activiteit om mijn geest los te maken. Dit
+lukte bij het kappen van steen tot beelden. De hierbij verworven vaardigheid ben ik ook gaan toepassen
+om letters te kappen in steen.`,
+    kunstwerk: `1. Ring van Möbius
+2. Tast maar.`,
+    contactgegevens: `Patrick Vanderstichele
+1955
+patrick.vanderstichele@gmail.com`
   },
   {
     naam: 'Rita Craeynest',
@@ -285,18 +344,32 @@ export const kunstenaars = [
       '/images/kunstenaars/rita-craeynest/4.jpg',
       '/images/kunstenaars/rita-craeynest/5.jpg'
     ],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    wieIs: `Wat bij Rita Craeynest begon als één van haar hobby’s, naast haar praktijk als kleuterleidster, groeide het modelleren in klei uit tot een gedreven passie.
+Kinderen zijn omwille van hun pure, aanstekelijke onbevangenheid haar grootste inspiratiebron.
+Haar geesteskinderen zijn levensgroot en levensecht. Het liefst creëert ze haar figuren zonder model. Het modelleren is dan pure fantasie en schepping. Voor haar kleinkinderen (en vroeger haar kinderen) maakte ze met liefde hierop uitzondering, Die wilde ze natuurlijk graag in brons vereeuwigen voor later.
+Ze begon omstreeks 1965 in terracotta. Sinds 1995 realiseerde ze haar grotere werken aanvankelijk in polyester en nam geleidelijk de overstap naar uitsluitend nog brons.
+Na het creëren en modelleren in klei volgt via de verloren-was-methode de hergeboorte in brons. Telkens weer een boeiende bekroning.
+Rita heeft naast haar thuisatelier ‘Beeld-en-Tuin’ te Sint-Denijs (Zwevegem) ook haar ‘Ateljeetje aan ’t Zeetje’ op de Zeedijk te Wenduine (De Haan) waar ze vooral in de zomer aan het werk is.(weekends juli–augustus 11u-13u & 18u-21u).`,
+    kunstwerk: `Eleana met Knuffelkonijntje, Xander met Balletje, Quinten met Waterspuit, Kimonas Muzikant in Spé
+
+ELEANA MET KNUFFELKONIJNTJE  Brons  (96 X 40 X 38 cm)
+XANDER MET BALLETJE  Brons  (81x 44 x 27 cm)
+QUINTEN MET SPUIT  Brons  (82 X 25 X 35 cm)
+KIMONAS MUZIKANT IN SPÉ  Brons  (89 X 28 x 43 cm)`,
+    contactgegevens: `Kaveiestraat 19
+8554 Sint-Denijs Zwevegem
++32 486 624 333
+rita.craeynest@skynet.be
+www.rita-craeynest.be`
   },
   {
     naam: 'Stan Lievens',
     slug: 'stan-lievens',
-    info: '',
+    info: 'Kleurpotlood op hout',
     afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    wieIs: `Stan Lievens (°1998, Roeselare) creëert werk dat uitnodigt tot het stellen van ongebruikelijke vragen. Van nachtelijke wandelingen met een banaan tot diepzinnige discussies met aangespoelde vissen: elke dialoog is voor hem een kunstwerk op zich.`,
+    kunstwerk: `Hij toont "Fruit du bains" in kleurpotlood op hout. Het werk vertrekt vanuit de zin: "Was je fruit altijd grondig. Je weet nooit welk verleden het had."`,
+    contactgegevens: `Instagram: Stan Lievens`
   },
   {
     naam: 'Steven Selschotter',
@@ -328,10 +401,30 @@ export const kunstenaars = [
     naam: 'Wim De Cauter',
     slug: 'wim-de-cauter',
     info: 'Franse witsteen',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    afbeeldingen: ['/images/kunstenaars/wim-de-cauter/1.jpeg'],
+    wieIs: `Wim De Cauter knutselde reeds als kind wonderbaarlijke tuigen in elkaar: kranen,
+vlotten, bruggen, fonteinen...
+Deze fascinatie voor tuigen tussen architectuur, natuur en techniek is zijn werk blijven
+kenmerken, wat vaak in surrealistische, visionaire beelden resulteert.
+Hij volgde de richting monumentale kunsten in Sint-Lukas Gent en werkte daarna in
+de alternatieve architectuur.
+Hij is altijd als beeldhouwer bezig geweest, maar ook als theaterbouwer, lesgever en
+ontwerper.
+Hij realiseerde reeds vele monumentale installaties voor scholen, dorpen, pleinen ...`,
+    kunstwerk: `‘LA TENDRESSE’
+
+  ‘La tendresse’, een levensgroot sculptuur van Wim De Cauter, is een streling voor het oog. Het beeld doet onwillekeurig denken aan de abstracte versie van een omhelzing: een man en een vrouw lijken elkaar innig te omarmen. Vandaar de titel: ‘de tederheid’. Qua vormentaal is het beeld tegelijk klassiek en modern. Het doet ook denken aan de opgegraven  versteende omhelzing in Pompei . Het is zowel een antieke torso als een abstracte, aerodynamische vorm, die past in de avant-gardetraditie à la Henry Moore. Je zou het tegelijk ‘ La tendresse en transparance’  kunnen noemen.
+
+  Fascinerend is dat de kunstenaar het werk als het ware in de natuur vond: een onooglijk kleine, bruine kei, die wellicht over duizenden jaren gevormd werd door het water en het toeval, een perfectie van rondingen vertoont en die niets wil zeggen, en toch voor ons mensen, een keer uitvergroot en in de juiste positie gebracht, na een aantal studies in de klei, onmiskenbaar antropomorf lijkt: twee verstrengelde lichamen.
+
+  De techniek van ‘object trouvé’, het spelen met in de natuur gevonden vormen die antropomorfe trekken aannemen, gebruikt de kunstenaar wel meer. Het toeval brengt prachtige archetypische vormen voort, die dan in verschillende varianten kunnen worden uitvergroot. Het gaat om verwondering en kijken. Maar ook om ambacht. Het maken van de monumentale versie in harde zandsteen uit een zandsteengroeve in Fontenoille, (Florenville) was een monnikenwerk: over een tijdsspanne van drie jaar heeft de kunstenaar er in zijn tuin aan gewerkt (tijdens de coronaperiode gaf het ritme en zin aan zijn dagen).
+
+  ‘La tendresse’ heeft een tegelijk evidente en intrigerende vorm, van een zeldzame gratie en elegantie. Door zijn gepolijste, helder beige oppervlak vormt het een oogstrelend contrapunt in het groen. Het is een beeldhouwwerk dat een spontaan genoegen opwekt, omdat het op vanzelfsprekende wijze tijdloze perfectie en harmonie uitstraalt.`,
+    contactgegevens: `Wim De Cauter
+  Zwevezeelsestraat 76
+  8851 Koolskamp
+  tel 0495/836879
+  www.wimdecauter.be`
   },
   {
     naam: 'Wim Franssens',
