@@ -38,6 +38,8 @@ const sfeerbeelden = [
   description="Ontdek de workshop Sip & Paint tijdens Kunst On(t)leed in Gits. Een gezellige en laagdrempelige workshop met kunstenaar Steven Selschotter."
 >
   <section class="sip-page">
+    <a href="/agenda" class="sip-back-link">← Terug naar agenda</a>
+
     <div class="sip-intro">
       <p class="kicker">Workshop</p>
       <h1>Sip & Paint</h1>
@@ -103,7 +105,7 @@ const sfeerbeelden = [
 
       <div class="info-card">
         <h2>Prijs</h2>
-        <p>Kostprijs alles in is 40€</p>
+        <p>Kostprijs alles in is €40</p>
       </div>
 
       <div class="info-card">
@@ -111,12 +113,20 @@ const sfeerbeelden = [
         <p>Maximum 15 personen per sessie</p>
       </div>
 
-      <div class="info-card info-card-wide">
+      <div class="info-card info-card-wide register-card">
         <h2>Inschrijven</h2>
         <p>
-        Inschrijven kan via onderstaande link. <br>
-        https://eventalix.org/events/70f336f9-51a4-4908-b1ce-d19a78354108/orders
+          Inschrijven kan via Eventalix. Kies daar de sessie die voor jou past.
         </p>
+
+        <a
+          class="sip-register-button"
+          href="https://eventalix.org/events/70f336f9-51a4-4908-b1ce-d19a78354108/orders"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Inschrijven voor Sip & Paint
+        </a>
       </div>
     </section>
   </section>
@@ -127,6 +137,21 @@ const sfeerbeelden = [
     width: min(1120px, calc(100% - 2.5rem));
     margin: 0 auto;
     padding: 3.5rem 0 5.5rem;
+  }
+
+  .sip-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 1.2rem;
+    color: var(--title);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  .sip-back-link:hover {
+    text-decoration: underline;
   }
 
   .sip-intro {
@@ -277,6 +302,37 @@ const sfeerbeelden = [
     grid-column: 1 / -1;
   }
 
+  .register-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sip-register-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: 999px;
+    background: var(--title);
+    color: #fbf3e6;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.98rem;
+    box-shadow: 0 8px 22px rgba(58, 36, 31, 0.12);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .sip-register-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(58, 36, 31, 0.16);
+    opacity: 0.92;
+  }
+
   .sip-extra-text {
     padding: 1.4rem 1.6rem;
   }
@@ -302,6 +358,11 @@ const sfeerbeelden = [
     .sip-page {
       width: min(100%, calc(100% - 1.5rem));
       padding: 2.4rem 0 4.5rem;
+    }
+
+    .sip-back-link {
+      margin-bottom: 0.9rem;
+      font-size: 0.92rem;
     }
 
     .lead {
@@ -344,6 +405,10 @@ const sfeerbeelden = [
     .info-card {
       padding: 1.2rem 1.15rem 1.1rem;
       border-radius: 1.4rem;
+    }
+
+    .sip-register-button {
+      width: 100%;
     }
 
     .sip-extra-text {

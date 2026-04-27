@@ -138,15 +138,6 @@ export const kunstenaars = [
   www.filiepkeramiek.be`
   },
   {
-    naam: 'Frank Ranson',
-    slug: 'frank-ranson',
-    info: '',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
-  },
-  {
     naam: 'Geert Corneillie (Kornul)',
     slug: 'geert-corneillie',
     info: 'Brons',
@@ -233,10 +224,12 @@ gsm 0494/064953`
   {
     naam: 'Laurent Geers',
     slug: 'laurent-geers',
-    info: '',
+    info: 'marmer versterkt met cement',
     afbeeldingen: [
       '/images/kunstenaars/laurent-geers/1.jpg',
-      '/images/kunstenaars/laurent-geers/2.jpg'
+      '/images/kunstenaars/laurent-geers/2.jpg',
+      '/images/kunstenaars/laurent-geers/3.jpg',
+      '/images/kunstenaars/laurent-geers/4.jpg'
     ],
     wieIs: `Reeds op jonge leeftijd was hij gefascineerd door de klassieke Grieks en Romeinse beelden
 zijn werken zijn anonieme fragmenten van mozaïeken; maar in 3 D
@@ -270,7 +263,10 @@ laurent.geers@skynet.be en facebook
     naam: 'Louise Kerkaert',
     slug: 'louise-kerkaert',
     info: 'Acrylstift op papier',
-    afbeeldingen: ['...'],
+    afbeeldingen: [
+      '/images/kunstenaars/louise-kerkaert/1.jpeg',
+      '/images/kunstenaars/louise-kerkaert/2.jpeg'
+    ],
     wieIs: `Louise Kerkaert is een jonge kunstenares uit Gits. In 2024 nam ze met succes deel aan "Non-stop Kunst", een groepstentoonstelling in eigen gemeente. Later dat jaar was ze laureate op de Nationale Ensorwedstrijd georganiseerd door KBR (Koninklijke Bibliotheek van België), VRT en MuseumPASSmusées met haar werk "De vreemdeling" dat geveild werd voor het goede doel. Sindsdien maakte ze verschillende unieke werken met acrylstift op canvas of papier.`,
     kunstwerk: `"Alles tegelijk" en "Grenzen"
 
@@ -297,9 +293,9 @@ Drie zwarte strepen die op het eerste zicht zeer eenvoudig lijken, maar een ster
     slug: 'maarten-van-thourhout',
     info: 'Papier',
     afbeeldingen: ['/images/kunstenaars/maarten-van-thourhout/1.jpg'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
+    wieIs: `Maarten Van Thourhout (°1977, Roeselare) is interieurarchitect en vertrekt in zijn beeldend werk vaak vanuit bestaande objecten. Door technieken zoals herhaling, afgieten en stapelen ontstaan sculpturen die herkenbaar blijven, maar tegelijk uit hun oorspronkelijke context worden gehaald. Vanuit zijn opleiding Mixed Media aan de Gentse Academie onderzoekt hij hoe vorm, herhaling en materiaal kunnen leiden tot vervreemding en herinterpretatie.`,
+    kunstwerk: `Hij toont "TUINWACHTERS". Het werk bestaat uit dertig afgietsels van het gezicht van een klassiek tuinkabouterbeeldje, uitgevoerd in gepatineerde vloerlijm op gips. Door de herhaling en het uitknippen van enkel het gezicht verliest de figuur zijn individuele herkenbaarheid en ontstaat er een subtiele vervreemding. Het werk verwijst naar de bekende Vlaamse voortuintjes, waar kabouters vaak als stille getuigen aanwezig zijn. Door de donkergroen koperkleurige patina krijgt het geheel een natuurlijke, bijna organische uitstraling.`,
+    contactgegevens: `maarten@vanthourhout.be`
   },
   {
     naam: 'Manon Huguenin',

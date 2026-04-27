@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import parcoursGeojsonUrl from '../data/parcours.geojson?url';
 ---
 
 <Layout
@@ -12,13 +13,57 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <section class="route-map-section">
-    <figure class="route-map-card">
-      <img
-        src="/images/parcours.jpg"
-        alt="Overzichtskaart van het parcours van Kunst On(t)leed"
-        class="route-map"
-      />
-    </figure>
+    <div class="route-map-card">
+      <div class="route-map-toolbar">
+        <button type="button" class="route-map-action" data-locate-btn>
+          Toon mijn locatie
+        </button>
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Vleterstraat%208830%20Gits%20ZetjeBie"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="route-map-action route-map-action-secondary"
+        >
+          Navigeer naar startpunt
+        </a>
+
+        <button
+          type="button"
+          class="route-map-action route-map-action-secondary"
+          data-offline-toggle
+          aria-expanded="false"
+        >
+          Bekijk offline kaart
+        </button>
+      </div>
+
+      <div
+        id="route-map"
+        class="route-map-interactive"
+        aria-label="Interactieve kaart van het parcours van Kunst On(t)leed"
+        data-geojson-url={parcoursGeojsonUrl}
+      ></div>
+
+      <p class="route-map-status" data-route-status></p>
+
+      <div class="route-offline-card" data-offline-map hidden>
+        <button
+          class="route-offline-image-button"
+          type="button"
+          aria-label="Open de offline parcourskaart groter"
+          data-offline-lightbox-open
+        >
+          <img
+            src="/images/parcours.jpg"
+            alt="Offline overzichtskaart van het parcours van Kunst On(t)leed"
+            class="route-offline-image"
+          />
+
+          <span class="route-map-hint">Klik om te vergroten</span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <section class="route-info-grid">
@@ -36,6 +81,314 @@ import Layout from '../layouts/Layout.astro';
       </p>
     </article>
   </section>
+
+  <div class="route-lightbox" data-offline-lightbox aria-hidden="true">
+    <button
+      class="route-lightbox-close"
+      type="button"
+      aria-label="Sluiten"
+      data-offline-lightbox-close
+    >
+      ×
+    </button>
+
+    <div class="route-lightbox-content">
+      <img
+        src="/images/parcours.jpg"
+        alt="Offline overzichtskaart van het parcours van Kunst On(t)leed groot weergegeven"
+        class="route-lightbox-image"
+      />
+    </div>
+  </div>
+
+  <script is:inline>
+    async function loadLeafletAssets() {
+      if (window.L) return window.L;
+
+      const existingStylesheet = document.querySelector('link[data-leaflet-css]');
+      if (!existingStylesheet) {
+        const leafletCss = document.createElement('link');
+        leafletCss.rel = 'stylesheet';
+        leafletCss.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+        leafletCss.dataset.leafletCss = 'true';
+        document.head.appendChild(leafletCss);
+      }
+
+      if (!window.__leafletPromise) {
+        window.__leafletPromise = new Promise((resolve, reject) => {
+          const existingScript = document.querySelector('script[data-leaflet-js]');
+
+          if (existingScript) {
+            existingScript.addEventListener('load', () => resolve(window.L));
+            existingScript.addEventListener('error', reject);
+            return;
+          }
+
+          const leafletScript = document.createElement('script');
+          leafletScript.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+          leafletScript.defer = true;
+          leafletScript.dataset.leafletJs = 'true';
+          leafletScript.onload = () => resolve(window.L);
+          leafletScript.onerror = reject;
+          document.body.appendChild(leafletScript);
+        });
+      }
+
+      return window.__leafletPromise;
+    }
+
+    function getRouteCoordinates(geojson) {
+      const allCoords = [];
+
+      const features = geojson.type === 'FeatureCollection'
+        ? geojson.features
+        : [geojson];
+
+      features.forEach((feature) => {
+        const geometry = feature.type === 'Feature' ? feature.geometry : feature;
+        if (!geometry) return;
+
+        if (geometry.type === 'LineString') {
+          allCoords.push(...geometry.coordinates);
+        }
+
+        if (geometry.type === 'MultiLineString') {
+          geometry.coordinates.forEach((line) => {
+            allCoords.push(...line);
+          });
+        }
+      });
+
+      return allCoords;
+    }
+
+    async function initRouteMap() {
+      const mapElement = document.getElementById('route-map');
+      const locateButton = document.querySelector('[data-locate-btn]');
+      const statusElement = document.querySelector('[data-route-status]');
+
+      if (!mapElement || mapElement.dataset.initialized === 'true') return;
+      mapElement.dataset.initialized = 'true';
+
+      const updateStatus = (message = '') => {
+        if (statusElement) {
+          statusElement.textContent = message;
+        }
+      };
+
+      try {
+        const L = await loadLeafletAssets();
+
+        const map = L.map(mapElement, {
+          scrollWheelZoom: true,
+          zoomControl: true,
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; OpenStreetMap-bijdragers',
+        }).addTo(map);
+
+        const geojsonUrl = mapElement.dataset.geojsonUrl;
+
+        if (!geojsonUrl) {
+          throw new Error('Geen GeoJSON-pad gevonden.');
+        }
+
+        const response = await fetch(geojsonUrl);
+
+        if (!response.ok) {
+          throw new Error('GeoJSON kon niet geladen worden.');
+        }
+
+        const geojson = await response.json();
+
+        const routeLayer = L.geoJSON(geojson, {
+          style: {
+            color: '#9d0f2f',
+            weight: 5,
+            opacity: 0.92,
+          },
+        }).addTo(map);
+
+        const bounds = routeLayer.getBounds();
+
+        if (bounds.isValid()) {
+          map.fitBounds(bounds, { padding: [28, 28] });
+        } else {
+          map.setView([50.99776, 3.126447], 17);
+        }
+
+        const rawCoords = getRouteCoordinates(geojson);
+
+        if (rawCoords.length > 0) {
+          const start = rawCoords[0];
+          const end = rawCoords[rawCoords.length - 1];
+
+          const startLatLng = [start[1], start[0]];
+          const endLatLng = [end[1], end[0]];
+
+          L.circleMarker(startLatLng, {
+            radius: 8,
+            color: '#9d0f2f',
+            fillColor: '#9d0f2f',
+            fillOpacity: 1,
+            weight: 2,
+          })
+            .addTo(map)
+            .bindPopup('Startpunt van het parcours');
+
+          L.circleMarker(endLatLng, {
+            radius: 8,
+            color: '#e6a11a',
+            fillColor: '#e6a11a',
+            fillOpacity: 1,
+            weight: 2,
+          })
+            .addTo(map)
+            .bindPopup('Eindpunt van het parcours');
+        }
+
+        let userMarker = null;
+        let userCircle = null;
+
+        locateButton?.addEventListener('click', () => {
+          if (!navigator.geolocation) {
+            updateStatus('Je browser ondersteunt geen geolocatie.');
+            return;
+          }
+
+          locateButton.disabled = true;
+          locateButton.textContent = 'Locatie ophalen...';
+          updateStatus('Je locatie wordt opgehaald...');
+
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const userLatLng = [
+                position.coords.latitude,
+                position.coords.longitude,
+              ];
+
+              if (userMarker) {
+                map.removeLayer(userMarker);
+              }
+
+              if (userCircle) {
+                map.removeLayer(userCircle);
+              }
+
+              userMarker = L.circleMarker(userLatLng, {
+                radius: 9,
+                color: '#2563eb',
+                fillColor: '#2563eb',
+                fillOpacity: 1,
+                weight: 2,
+              })
+                .addTo(map)
+                .bindPopup('Jouw huidige locatie')
+                .openPopup();
+
+              userCircle = L.circle(userLatLng, {
+                radius: position.coords.accuracy,
+                color: '#2563eb',
+                fillColor: '#2563eb',
+                fillOpacity: 0.12,
+                weight: 1,
+              }).addTo(map);
+
+              map.flyTo(userLatLng, Math.max(map.getZoom(), 17), {
+                duration: 1.2,
+              });
+
+              locateButton.disabled = false;
+              locateButton.textContent = 'Mijn locatie vernieuwen';
+              updateStatus('Je locatie werd op de kaart geplaatst.');
+            },
+            () => {
+              locateButton.disabled = false;
+              locateButton.textContent = 'Toon mijn locatie';
+              updateStatus(
+                'Je locatie kon niet opgehaald worden. Controleer of je locatie-toegang hebt toegestaan.'
+              );
+            },
+            {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 0,
+            }
+          );
+        });
+
+        setTimeout(() => {
+          map.invalidateSize();
+        }, 250);
+      } catch (error) {
+        console.error(error);
+        updateStatus('De interactieve kaart kon niet geladen worden.');
+      }
+    }
+
+    function initOfflineMap() {
+      const toggleButton = document.querySelector('[data-offline-toggle]');
+      const offlineMap = document.querySelector('[data-offline-map]');
+      const openButton = document.querySelector('[data-offline-lightbox-open]');
+      const lightbox = document.querySelector('[data-offline-lightbox]');
+      const closeButton = document.querySelector('[data-offline-lightbox-close]');
+
+      if (!toggleButton || !offlineMap || toggleButton.dataset.initialized === 'true') return;
+
+      toggleButton.dataset.initialized = 'true';
+
+      const closeLightbox = () => {
+        lightbox?.classList.remove('is-open');
+        lightbox?.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('route-lightbox-open');
+      };
+
+      const openLightbox = () => {
+        lightbox?.classList.add('is-open');
+        lightbox?.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('route-lightbox-open');
+      };
+
+      toggleButton.addEventListener('click', () => {
+        const isHidden = offlineMap.hasAttribute('hidden');
+
+        if (isHidden) {
+          offlineMap.removeAttribute('hidden');
+          toggleButton.textContent = 'Verberg offline kaart';
+          toggleButton.setAttribute('aria-expanded', 'true');
+        } else {
+          offlineMap.setAttribute('hidden', '');
+          toggleButton.textContent = 'Bekijk offline kaart';
+          toggleButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      openButton?.addEventListener('click', openLightbox);
+      closeButton?.addEventListener('click', closeLightbox);
+
+      lightbox?.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox?.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    }
+
+    initRouteMap();
+    initOfflineMap();
+
+    document.addEventListener('astro:page-load', () => {
+      initRouteMap();
+      initOfflineMap();
+    });
+  </script>
 </Layout>
 
 <style>
@@ -63,19 +416,191 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .route-map-card {
-    margin: 0;
-    background-color: rgba(251, 243, 230, 0.86);
+    background-color: rgba(251, 243, 230, 0.9);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     padding: 1rem;
     box-shadow: 0 8px 24px rgba(58, 36, 31, 0.05);
   }
 
-  .route-map {
+  .route-map-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .route-map-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(157, 15, 47, 0.18);
+    border-radius: 999px;
+    background: #9d0f2f;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.96rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .route-map-action:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+  }
+
+  .route-map-action:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+  }
+
+  .route-map-action-secondary {
+    background: rgba(251, 243, 230, 0.96);
+    color: var(--title);
+  }
+
+  .route-map-interactive {
+    width: 100%;
+    height: 560px;
+    border-radius: 0.95rem;
+    overflow: hidden;
+    border: 1px solid rgba(58, 36, 31, 0.1);
+  }
+
+  .route-map-note {
+    margin: 0.85rem 0 0;
+    font-size: 0.96rem;
+    line-height: 1.65;
+    color: #5f4b44;
+  }
+
+  .route-map-status {
+    margin: 0.45rem 0 0;
+    min-height: 1.5rem;
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: #9d0f2f;
+  }
+
+  .route-offline-card {
+    margin-top: 1rem;
+    border-radius: 0.95rem;
+    overflow: hidden;
+    border: 1px solid rgba(58, 36, 31, 0.1);
+    background: rgba(251, 243, 230, 0.8);
+  }
+
+  .route-offline-card[hidden] {
+    display: none;
+  }
+
+  .route-offline-image-button {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+
+  .route-offline-image {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 0.9rem;
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  .route-offline-image-button:hover .route-offline-image {
+    transform: scale(1.01);
+    opacity: 0.94;
+  }
+
+  .route-map-hint {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(251, 243, 230, 0.92);
+    color: var(--title);
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 8px 22px rgba(58, 36, 31, 0.12);
+    backdrop-filter: blur(6px);
+  }
+
+  .route-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(30, 20, 17, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .route-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .route-lightbox-content {
+    max-width: min(94vw, 1200px);
+    max-height: 84vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .route-lightbox-image {
+    max-width: 100%;
+    max-height: 84vh;
+    display: block;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .route-lightbox-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: none;
+    border-radius: 999px;
+    background: rgba(251, 243, 230, 0.92);
+    color: var(--title);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  }
+
+  :global(body.route-lightbox-open) {
+    overflow: hidden;
   }
 
   .route-info-grid {
@@ -122,6 +647,52 @@ import Layout from '../layouts/Layout.astro';
 
     .route-map-section {
       margin-top: 1.4rem;
+    }
+
+    .route-map-card {
+      padding: 0.85rem;
+    }
+
+    .route-map-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .route-map-action {
+      width: 100%;
+      font-size: 0.95rem;
+    }
+
+    .route-map-interactive {
+      height: 430px;
+    }
+
+    .route-map-hint {
+      right: 0.75rem;
+      bottom: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.82rem;
+    }
+
+    .route-lightbox {
+      padding: 1rem;
+    }
+
+    .route-lightbox-close {
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 2.45rem;
+      height: 2.45rem;
+      font-size: 1.8rem;
+    }
+
+    .route-lightbox-content {
+      max-width: 96vw;
+      max-height: 82vh;
+    }
+
+    .route-lightbox-image {
+      max-height: 82vh;
     }
 
     .route-info-grid {
