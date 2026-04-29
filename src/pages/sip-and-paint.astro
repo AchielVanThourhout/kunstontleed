@@ -308,24 +308,27 @@ const sfeerbeelden = [
     align-items: flex-start;
   }
 
-  .sip-register-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
-    padding: 0.85rem 1.25rem;
-    border-radius: 999px;
-    background: var(--title);
-    color: #fbf3e6;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.98rem;
-    box-shadow: 0 8px 22px rgba(58, 36, 31, 0.12);
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease,
-      opacity 0.2s ease;
-  }
+    .sip-register-button {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        margin-top: 1rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        background: var(--title);
+        color: #fbf3e6;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.98rem;
+        box-shadow: 0 8px 22px rgba(58, 36, 31, 0.12);
+        transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+    }
 
   .sip-register-button:hover {
     transform: translateY(-1px);

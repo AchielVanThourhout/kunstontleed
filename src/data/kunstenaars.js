@@ -83,7 +83,10 @@ export const kunstenaars = [
     naam: 'David Smulders',
     slug: 'david-smulders',
     info: 'Cortenstaal',
-    afbeeldingen: ['/images/kunstenaars/david-smulders/1.jpeg'],
+    afbeeldingen: [
+      '/images/kunstenaars/david-smulders/1.jpeg',
+      '/images/kunstenaars/david-smulders/2.jpeg'
+    ],
     wieIs: `David Smulders (°1975) is een abstract constructief multi-artiest die zich beweegt in de wereld van abstractie en geometrische verhoudingen. Hij ontwerpt handgetufte tapijten, schilderijen en beelden.`,
     kunstwerk: `Hij toont "X - Vex 2" in cortenstaal. Het werk ontstond uit een schilderij waarvan hij een stuk gebruikte en driedimensionaal voorstelde. Daardoor kan je rond het werk wandelen en wordt het langs elke zijde interessant.`,
     contactgegevens: `smuldersdavid@gmail.com
@@ -151,7 +154,11 @@ export const kunstenaars = [
     naam: 'Greet Decleir',
     slug: 'greet-decleir',
     info: 'Cortenstaal, inox en geschilderd aluminium',
-    afbeeldingen: ['...'],
+    afbeeldingen: [
+      '/images/kunstenaars/greet-decleir/1.jpg',
+      '/images/kunstenaars/greet-decleir/2.jpg',
+      '/images/kunstenaars/greet-decleir/3.jpg'
+    ],
     wieIs: `Greet Decleir (°1963, Torhout) werkt onder de naam Silent Silhouettes. Haar werk ontstaat vanuit een sterke drang om momenten die ertoe doen niet verloren te laten gaan. Met Silent Silhouettes vertaalt ze betekenisvolle gebeurtenissen en herinneringen naar verstilde beelden in de natuur. De combinatie van fotografie en metaal laat haar toe om vluchtige momenten om te zetten in iets tastbaars en blijvends.`,
     kunstwerk: `Ze toont onder meer "Henri", "Hannah" en "Odette". Haar werk vertrekt vanuit fotografie in natuurlijk licht, waarbij de keuze van het juiste beeld cruciaal is. Elk werk begint bij een echt moment, vastgelegd in één foto die de basis vormt van het uiteindelijke kunstwerk. Met silhouetten in de natuur herleidt ze dat beeld tot essentiële vormen en contrasten, zodat het verhaal leesbaar blijft zonder details. Zo ontstaan krachtige, minimalistische beelden waarin elke lijn en vorm bijdraagt aan wat echt telt.`,
     contactgegevens: `Hoogledestraat 122
@@ -292,7 +299,7 @@ Drie zwarte strepen die op het eerste zicht zeer eenvoudig lijken, maar een ster
     naam: 'Maarten Van Thourhout',
     slug: 'maarten-van-thourhout',
     info: 'Papier',
-    afbeeldingen: ['/images/kunstenaars/maarten-van-thourhout/1.jpg'],
+    afbeeldingen: ['/images/kunstenaars/maarten-van-thourhout/1.jpeg'],
     wieIs: `Maarten Van Thourhout (°1977, Roeselare) is interieurarchitect en vertrekt in zijn beeldend werk vaak vanuit bestaande objecten. Door technieken zoals herhaling, afgieten en stapelen ontstaan sculpturen die herkenbaar blijven, maar tegelijk uit hun oorspronkelijke context worden gehaald. Vanuit zijn opleiding Mixed Media aan de Gentse Academie onderzoekt hij hoe vorm, herhaling en materiaal kunnen leiden tot vervreemding en herinterpretatie.`,
     kunstwerk: `Hij toont "TUINWACHTERS". Het werk bestaat uit dertig afgietsels van het gezicht van een klassiek tuinkabouterbeeldje, uitgevoerd in gepatineerde vloerlijm op gips. Door de herhaling en het uitknippen van enkel het gezicht verliest de figuur zijn individuele herkenbaarheid en ontstaat er een subtiele vervreemding. Het werk verwijst naar de bekende Vlaamse voortuintjes, waar kabouters vaak als stille getuigen aanwezig zijn. Door de donkergroen koperkleurige patina krijgt het geheel een natuurlijke, bijna organische uitstraling.`,
     contactgegevens: `maarten@vanthourhout.be`
