@@ -141,7 +141,7 @@ export const kunstenaars = [
   www.filiepkeramiek.be`
   },
   {
-    naam: 'Geert Corneillie (Kornul)',
+    naam: 'Geert Corneillie - Kornul',
     slug: 'geert-corneillie',
     info: 'Brons',
     afbeeldingen: ['/images/kunstenaars/geert-corneillie/1.jpeg'],
@@ -157,12 +157,18 @@ export const kunstenaars = [
     afbeeldingen: [
       '/images/kunstenaars/greet-decleir/1.jpg',
       '/images/kunstenaars/greet-decleir/2.jpg',
-      '/images/kunstenaars/greet-decleir/3.jpg'
+      '/images/kunstenaars/greet-decleir/3.jpg',
+      '/images/kunstenaars/greet-decleir/4.jpg',
+      '/images/kunstenaars/greet-decleir/5.jpg',
+      '/images/kunstenaars/greet-decleir/6.jpg',
+      '/images/kunstenaars/greet-decleir/7.jpg'
     ],
     wieIs: `Greet Decleir (°1963, Torhout) werkt onder de naam Silent Silhouettes. Haar werk ontstaat vanuit een sterke drang om momenten die ertoe doen niet verloren te laten gaan. Met Silent Silhouettes vertaalt ze betekenisvolle gebeurtenissen en herinneringen naar verstilde beelden in de natuur. De combinatie van fotografie en metaal laat haar toe om vluchtige momenten om te zetten in iets tastbaars en blijvends.`,
     kunstwerk: `Ze toont onder meer "Henri", "Hannah" en "Odette". Haar werk vertrekt vanuit fotografie in natuurlijk licht, waarbij de keuze van het juiste beeld cruciaal is. Elk werk begint bij een echt moment, vastgelegd in één foto die de basis vormt van het uiteindelijke kunstwerk. Met silhouetten in de natuur herleidt ze dat beeld tot essentiële vormen en contrasten, zodat het verhaal leesbaar blijft zonder details. Zo ontstaan krachtige, minimalistische beelden waarin elke lijn en vorm bijdraagt aan wat echt telt.`,
-    contactgegevens: `Hoogledestraat 122
-  8610 Kortemark`
+    contactgegevens: `0476 32 99 83 – 051 57 05 77
+    greet@silentsilhouettes.be
+    silentsilhouettes.be
+    Hoogledestraat 122 – 8610 Kortemark`
   },
   {
     naam: 'Henk Korthuys',
@@ -212,7 +218,7 @@ export const kunstenaars = [
   0487/905199`
   },
   {
-    naam: 'Koen Vandewalle',
+    naam: 'Carving Koen',
     slug: 'koen-vandewalle',
     info: 'Hout',
     afbeeldingen: [
@@ -272,7 +278,8 @@ laurent.geers@skynet.be en facebook
     info: 'Acrylstift op papier',
     afbeeldingen: [
       '/images/kunstenaars/louise-kerkaert/1.jpeg',
-      '/images/kunstenaars/louise-kerkaert/2.jpeg'
+      '/images/kunstenaars/louise-kerkaert/2.jpeg',
+      '/images/kunstenaars/louise-kerkaert/.jpg'
     ],
     wieIs: `Louise Kerkaert is een jonge kunstenares uit Gits. In 2024 nam ze met succes deel aan "Non-stop Kunst", een groepstentoonstelling in eigen gemeente. Later dat jaar was ze laureate op de Nationale Ensorwedstrijd georganiseerd door KBR (Koninklijke Bibliotheek van België), VRT en MuseumPASSmusées met haar werk "De vreemdeling" dat geveild werd voor het goede doel. Sindsdien maakte ze verschillende unieke werken met acrylstift op canvas of papier.`,
     kunstwerk: `"Alles tegelijk" en "Grenzen"
@@ -369,7 +376,7 @@ www.rita-craeynest.be`
     naam: 'Stan Lievens',
     slug: 'stan-lievens',
     info: 'Kleurpotlood op hout',
-    afbeeldingen: ['...'],
+    afbeeldingen: ['/images/kunstenaars/stan-lievens/1.jpg'],
     wieIs: `Stan Lievens (°1998, Roeselare) creëert werk dat uitnodigt tot het stellen van ongebruikelijke vragen. Van nachtelijke wandelingen met een banaan tot diepzinnige discussies met aangespoelde vissen: elke dialoog is voor hem een kunstwerk op zich.`,
     kunstwerk: `Hij toont "Fruit du bains" in kleurpotlood op hout. Het werk vertrekt vanuit de zin: "Was je fruit altijd grondig. Je weet nooit welk verleden het had."`,
     contactgegevens: `Instagram: Stan Lievens`
@@ -430,7 +437,7 @@ Hij realiseerde reeds vele monumentale installaties voor scholen, dorpen, pleine
   www.wimdecauter.be`
   },
   {
-    naam: 'Wim Franssens',
+    naam: 'Wim Franssens - Living Iron',
     slug: 'wim-franssens',
     info: 'Staal en epoxy',
     afbeeldingen: ['...'],
