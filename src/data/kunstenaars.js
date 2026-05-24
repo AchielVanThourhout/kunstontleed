@@ -31,15 +31,6 @@ export const kunstenaars = [
   www.caluwier.net`
   },
   {
-    naam: 'Christ Bruneel',
-    slug: 'christ-bruneel',
-    info: '',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
-  },
-  {
     naam: 'Christian Dedeene',
     slug: 'christian-dedeene',
     info: 'Hout en metaal',
@@ -151,7 +142,7 @@ export const kunstenaars = [
   0495 76 14 53`
   },
   {
-    naam: 'Greet Decleir',
+    naam: 'Greet Decleir - Silent Silhouettes',
     slug: 'greet-decleir',
     info: 'Cortenstaal, inox en geschilderd aluminium',
     afbeeldingen: [
@@ -279,7 +270,7 @@ laurent.geers@skynet.be en facebook
     afbeeldingen: [
       '/images/kunstenaars/louise-kerkaert/1.jpeg',
       '/images/kunstenaars/louise-kerkaert/2.jpeg',
-      '/images/kunstenaars/louise-kerkaert/.jpg'
+      '/images/kunstenaars/louise-kerkaert/3.jpg'
     ],
     wieIs: `Louise Kerkaert is een jonge kunstenares uit Gits. In 2024 nam ze met succes deel aan "Non-stop Kunst", een groepstentoonstelling in eigen gemeente. Later dat jaar was ze laureate op de Nationale Ensorwedstrijd georganiseerd door KBR (Koninklijke Bibliotheek van België), VRT en MuseumPASSmusées met haar werk "De vreemdeling" dat geveild werd voor het goede doel. Sindsdien maakte ze verschillende unieke werken met acrylstift op canvas of papier.`,
     kunstwerk: `"Alles tegelijk" en "Grenzen"
@@ -290,7 +281,13 @@ Het schilderij toont een levendige, speelse energie waarin kleur en vorm met elk
 
 "Grenzen" (zwart wit)
 
-Drie zwarte strepen die op het eerste zicht zeer eenvoudig lijken, maar een sterke aanwezigheid hebben, bepalen het centrum van dit werk. Ze raken elkaar niet, alsof ze grenzen bewaken. Tussen hen ontstaan doodles die als bruggen fungeren. Die fijne lijnen doorbreken de afstand en maken verbinding mogelijk waar de hoofdvormen dat niet doen. Het toont het belang van verbintenis in een wereld waarin grenzen mensen van elkaar scheiden.`,
+Drie zwarte strepen die op het eerste zicht zeer eenvoudig lijken, maar een sterke aanwezigheid hebben, bepalen het centrum van dit werk. Ze raken elkaar niet, alsof ze grenzen bewaken. Tussen hen ontstaan doodles die als bruggen fungeren. Die fijne lijnen doorbreken de afstand en maken verbinding mogelijk waar de hoofdvormen dat niet doen. Het toont het belang van verbintenis in een wereld waarin grenzen mensen van elkaar scheiden.
+
+"Nieuwe balans"
+
+Wanneer water de aarde overspoelt, lijkt alles verloren. Planten verdwijnen onder de golven, wortels worden losgerukt, en het landschap ademt een korte stilte van verwoesting. Het blauw draagt hier de kracht van het water: verwoestend, maar tegelijk ook levenschenkend.
+Toch is de natuur veerkrachtig. Het schilderij toont het moment waarop het water zich terugtrekt. Zaden die verborgen lagen, vinden plots vruchtbare grond. Uit de resten van wat gebroken leek groeit nieuw leven. 
+In de overgangskleur, het appelblauwzeegroen, leeft de herinnering aan die ontmoeting van water en aarde. Het tijdelijke evenwicht wordt verstoord, waarna er een nieuw evenwicht ontstaat. Zo leert dit werk dat ook na overstromingen in ons eigen leven, schoonheid en groei terug kunnen bloeien.`,
     contactgegevens: `louise.kerkaert@telenet.be`
   },
   {
@@ -306,7 +303,11 @@ Drie zwarte strepen die op het eerste zicht zeer eenvoudig lijken, maar een ster
     naam: 'Maarten Van Thourhout',
     slug: 'maarten-van-thourhout',
     info: 'Papier',
-    afbeeldingen: ['/images/kunstenaars/maarten-van-thourhout/1.jpeg'],
+    afbeeldingen: [
+      '/images/kunstenaars/maarten-van-thourhout/1.jpg',
+      '/images/kunstenaars/maarten-van-thourhout/2.jpg',
+      '/images/kunstenaars/maarten-van-thourhout/3.jpg'
+    ],
     wieIs: `Maarten Van Thourhout (°1977, Roeselare) is interieurarchitect en vertrekt in zijn beeldend werk vaak vanuit bestaande objecten. Door technieken zoals herhaling, afgieten en stapelen ontstaan sculpturen die herkenbaar blijven, maar tegelijk uit hun oorspronkelijke context worden gehaald. Vanuit zijn opleiding Mixed Media aan de Gentse Academie onderzoekt hij hoe vorm, herhaling en materiaal kunnen leiden tot vervreemding en herinterpretatie.`,
     kunstwerk: `Hij toont "TUINWACHTERS". Het werk bestaat uit dertig afgietsels van het gezicht van een klassiek tuinkabouterbeeldje, uitgevoerd in gepatineerde vloerlijm op gips. Door de herhaling en het uitknippen van enkel het gezicht verliest de figuur zijn individuele herkenbaarheid en ontstaat er een subtiele vervreemding. Het werk verwijst naar de bekende Vlaamse voortuintjes, waar kabouters vaak als stille getuigen aanwezig zijn. Door de donkergroen koperkleurige patina krijgt het geheel een natuurlijke, bijna organische uitstraling.`,
     contactgegevens: `maarten@vanthourhout.be`
@@ -390,22 +391,38 @@ www.rita-craeynest.be`
     kunstwerk: 'Info over het kunstwerk volgt later.',
     contactgegevens: 'Contactgegevens volgen later.'
   },
+  // {
+  //   naam: 'Theo Lefebvre',
+  //   slug: 'theo-lefebvre',
+  //   info: 'Keramiek',
+  //   afbeeldingen: [
+  //     '/images/kunstenaars/theo-lefebvre/1.jpg',
+  //     '/images/kunstenaars/theo-lefebvre/2.jpg',
+  //     '/images/kunstenaars/theo-lefebvre/3.jpg',
+  //     '/images/kunstenaars/theo-lefebvre/4.jpg'
+  //   ],
+  //   wieIs: `Theo Lefebvre (°1956, Kortrijk) werkt met keramiek om vergankelijke klei om te zetten in blijvende vormen. Het boetseren zelf geeft hem voldoening, en een eenvoudige glimlach van de toeschouwer is voor hem de mooiste bevestiging.`,
+  //   kunstwerk: `Met "Gevleugelde keramiek" toont hij een reeks handgemaakte, unieke vogels in keramiek. Elke vogel draagt een eigen emotie in zich — van verwondering tot eenzaamheid of blijheid — en samen vormen ze een rustgevend geheel. Door de hoge baktemperatuur en de gebruikte klei zijn de werken ook winterhard.`,
+  //   contactgegevens: `Roodhuisweg 43
+  // 8510 Bellegem
+  // theo.lefebvre@telenet.be
+  // 0479 61 10 98`
+  // },
   {
-    naam: 'Theo Lefebvre',
-    slug: 'theo-lefebvre',
-    info: 'Keramiek',
+    naam: "'t Spoor Fotografeert",
+    slug: 't-spoor-fotografeert',
+    info: 'Fotografie',
     afbeeldingen: [
-      '/images/kunstenaars/theo-lefebvre/1.jpg',
-      '/images/kunstenaars/theo-lefebvre/2.jpg',
-      '/images/kunstenaars/theo-lefebvre/3.jpg',
-      '/images/kunstenaars/theo-lefebvre/4.jpg'
+      '/images/kunstenaars/t-spoor-fotografeert/1.jpg',
+      '/images/kunstenaars/t-spoor-fotografeert/2.jpg',
+      '/images/kunstenaars/t-spoor-fotografeert/3.jpg',
+      '/images/kunstenaars/t-spoor-fotografeert/4.jpg',
     ],
-    wieIs: `Theo Lefebvre (°1956, Kortrijk) werkt met keramiek om vergankelijke klei om te zetten in blijvende vormen. Het boetseren zelf geeft hem voldoening, en een eenvoudige glimlach van de toeschouwer is voor hem de mooiste bevestiging.`,
-    kunstwerk: `Met "Gevleugelde keramiek" toont hij een reeks handgemaakte, unieke vogels in keramiek. Elke vogel draagt een eigen emotie in zich — van verwondering tot eenzaamheid of blijheid — en samen vormen ze een rustgevend geheel. Door de hoge baktemperatuur en de gebruikte klei zijn de werken ook winterhard.`,
-    contactgegevens: `Roodhuisweg 43
-  8510 Bellegem
-  theo.lefebvre@telenet.be
-  0479 61 10 98`
+    wieIs: `'t Spoor Fotografeert brengt een fototentoonstelling rond de leefwereld van mensen met een niet-aangeboren hersenletsel (NAH). De tentoonstelling zet hun dagelijkse realiteit, uitdagingen en kracht in de kijker en vormt door haar sterke boodschap een bijzonder onderdeel binnen de kunstroute.`,
+    kunstwerk: `De tentoonstelling bestaat uit twee delen. 
+    Enerzijds zijn er foto's gemaakt door mensen met NAH, waarin hun dagelijks leven en de vaak onzichtbare gevolgen van een hersenletsel worden getoond. 
+    Anderzijds is er een typologiefoto met mensen mét en zonder NAH, die duidelijk maakt dat NAH vaak niet zichtbaar is. De expo wil bezoekers laten stilstaan bij onbegrip, vooroordelen en het belang van erkenning.`,
+    contactgegevens: `https://focus-wtv.be/nieuws/inzicht-in-een-soms-onzichtbare-strijd-fotos-van-mensen-met-nah-in-az-delta`
   },
   {
     naam: 'Wim De Cauter',
@@ -440,7 +457,7 @@ Hij realiseerde reeds vele monumentale installaties voor scholen, dorpen, pleine
     naam: 'Wim Franssens - Living Iron',
     slug: 'wim-franssens',
     info: 'Staal en epoxy',
-    afbeeldingen: ['...'],
+    afbeeldingen: ['/images/kunstenaars/wim-franssens/1.jpg'],
     wieIs: `Wim Franssens (Living Iron) (°1974, Reet) is een autodidactisch beeldhouwer. Na een opleiding fotografie kwam zijn creativiteit later terug via schilderkunst, meubelontwerp en uiteindelijk vrije sculptuur.`,
     kunstwerk: `Met "Helix Embrace" toont hij een sculptuur in staal en epoxy waarin hard metaal een organische, opwaartse beweging krijgt. De helix suggereert groei, verbondenheid en een voortdurende beweging naar boven, terwijl het licht in het hart van het werk spanning geeft aan het donkere metaal.`,
     contactgegevens: `wim.franssens.living.iron@gmail.com
