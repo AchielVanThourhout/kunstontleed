@@ -383,14 +383,14 @@ www.rita-craeynest.be`
     contactgegevens: `Instagram: Stan Lievens`
   },
   {
-    naam: 'Steven Selschotter',
-    slug: 'steven-selschotter',
-    info: 'Graffiti',
-    afbeeldingen: ['...'],
-    wieIs: 'Info volgt later.',
-    kunstwerk: 'Info over het kunstwerk volgt later.',
-    contactgegevens: 'Contactgegevens volgen later.'
-  },
+  naam: 'Steven Selschotter',
+  slug: 'steven-selschotter',
+  info: 'Graffiti',
+  afbeeldingen: ['/images/kunstenaars/steven-selschotter/1.jpeg'],
+  wieIs: 'Steven Selschotter, ook bekend als Sel Schotter, is geboren in 1981 in Roeselare.',
+  kunstwerk: 'Het kunstwerk heet “Isla de Savio” en is gemaakt in graffiti. De figuren op deze graffiti zijn net bevreemdend genoeg om een kleine deining in de geest teweeg te brengen. De gedachte kan in haar zoektocht naar betekenis alle kanten uit kabbelen: naar een eiland dat zich ver weg van de zee bevindt of naar een mythologie die kant noch wal raakt. Onderhuids verbergen deze monochrome figuren een stormachtig kleurenpalet. Tegenover de loodgrijze achtergrond laten de sprookjesachtige figuren zich echter lezen met de lichtheid van een luchtmatras. Wie toch in de diepte van dit werk wil duiken om de waarheid aan het oppervlak te brengen, moet te rade gaan in de discografie van ’t Hof Van Commerce. De bron waar deze muurschilderij uit voortgevloeid is, vindt u op de plaat “Ezoa En Niet Anders”. Moge de uil van Athene u vergezellen in deze queeste!',
+  contactgegevens: 'steven.selschotter@gmail.com'
+},
   // {
   //   naam: 'Theo Lefebvre',
   //   slug: 'theo-lefebvre',
@@ -416,7 +416,6 @@ www.rita-craeynest.be`
       '/images/kunstenaars/t-spoor-fotografeert/1.jpg',
       '/images/kunstenaars/t-spoor-fotografeert/2.jpg',
       '/images/kunstenaars/t-spoor-fotografeert/3.jpg',
-      '/images/kunstenaars/t-spoor-fotografeert/4.jpg',
     ],
     wieIs: `'t Spoor Fotografeert brengt een fototentoonstelling rond de leefwereld van mensen met een niet-aangeboren hersenletsel (NAH). De tentoonstelling zet hun dagelijkse realiteit, uitdagingen en kracht in de kijker en vormt door haar sterke boodschap een bijzonder onderdeel binnen de kunstroute.`,
     kunstwerk: `De tentoonstelling bestaat uit twee delen. 
